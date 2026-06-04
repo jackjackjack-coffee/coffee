@@ -61,26 +61,28 @@ export function HomeDashboard() {
         <Stat label={t('home.dash.yearSpend')} value={fmt.money(yearSpend)} sub={yearSpend === 0 ? t('home.dash.noData') : undefined} />
       </div>
 
-      {yearSpend > 0 && (
-        <Card>
-          <div className="mb-2 flex items-center justify-between text-sm">
-            <span className="font-medium text-coffee-700">{t('home.dash.split')}</span>
-            <span className="text-coffee-500 tnum">
-              {t('mode.home')} {homePct}% · {t('mode.cafe')} {100 - homePct}%
-            </span>
+      <div className="grid gap-4 lg:grid-cols-2 lg:items-start">
+        <div>
+          <div className="mb-1 px-1 text-xs font-semibold uppercase tracking-wide text-coffee-400">
+            {t('nav.home.settings')}
           </div>
-          <div className="flex h-3 overflow-hidden rounded-full bg-coffee-100">
-            <div className="bg-coffee-600" style={{ width: `${homePct}%` }} />
-            <div className="bg-amber-400" style={{ width: `${100 - homePct}%` }} />
-          </div>
-        </Card>
-      )}
-
-      <div>
-        <div className="mb-1 px-1 text-xs font-semibold uppercase tracking-wide text-coffee-400">
-          {t('nav.home.settings')}
+          <HomeSettingsCard />
         </div>
-        <HomeSettingsCard />
+
+        {yearSpend > 0 && (
+          <Card>
+            <div className="mb-2 flex items-center justify-between text-sm">
+              <span className="font-medium text-coffee-700">{t('home.dash.split')}</span>
+              <span className="text-coffee-500 tnum">
+                {t('mode.home')} {homePct}% · {t('mode.cafe')} {100 - homePct}%
+              </span>
+            </div>
+            <div className="flex h-3 overflow-hidden rounded-full bg-coffee-100">
+              <div className="bg-coffee-600" style={{ width: `${homePct}%` }} />
+              <div className="bg-amber-400" style={{ width: `${100 - homePct}%` }} />
+            </div>
+          </Card>
+        )}
       </div>
     </div>
   );

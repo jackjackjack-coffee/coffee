@@ -7,8 +7,14 @@
     -webkit-text-size-adjust: 100%;
   }
   body {
-    @apply bg-cream text-coffee-950 antialiased;
+    @apply min-h-screen bg-cream bg-grain bg-fixed text-coffee-950 antialiased;
     font-feature-settings: 'tnum' 1;
+  }
+  /* serif display headings for a café-menu feel */
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
   }
   /* tabular numbers for money columns */
   .tnum {
@@ -30,7 +36,13 @@
     @apply btn text-coffee-700 hover:bg-coffee-100;
   }
   .card {
-    @apply rounded-2xl border border-coffee-100 bg-white p-4 shadow-sm sm:p-5;
+    @apply rounded-2xl border border-coffee-100/80 bg-white p-4 shadow-warm sm:p-5;
+  }
+  .sidebar-link {
+    @apply flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm font-medium text-coffee-200 transition-colors hover:bg-white/10 hover:text-white;
+  }
+  .sidebar-link-active {
+    @apply bg-caramel text-espresso hover:bg-caramel hover:text-espresso;
   }
   .input {
     @apply w-full rounded-lg border border-coffee-200 bg-white px-3 py-2 text-sm outline-none focus:border-coffee-500 focus:ring-2 focus:ring-coffee-200;

@@ -20,7 +20,7 @@ export function SectionNav() {
 
   return (
     <nav className="border-b border-coffee-100 bg-white">
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto w-full">
         <div className="flex gap-1 overflow-x-auto px-3 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {sections.map((s) => {
             const locked = s.feature ? !hasFeature(tier, s.feature) : false;
