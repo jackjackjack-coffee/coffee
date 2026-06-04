@@ -1,31 +1,20 @@
+import { useId } from 'react';
+import { motion } from 'framer-motion';
+import { Lock, Settings } from 'lucide-react';
 import { useT } from '../i18n';
 import { cn } from '../lib/cn';
 import { useTier } from '../lib/hooks';
+import { indicatorSpring } from '../lib/motion';
 import { hasFeature } from '../license/gate';
 import { useAppStore } from '../store/useAppStore';
 import { CURRENCY_SYMBOL } from '../lib/format';
 import type { Currency, Language } from '../data/types';
 import { CAFE_SECTIONS, HOME_SECTIONS } from './sections';
+import { SECTION_ICON } from './icons';
 import { ModeSwitcher } from './ModeSwitcher';
+import { BrandMark } from './BrandMark';
 
 const CURRENCIES: Currency[] = ['KRW', 'USD', 'EUR'];
-
-/** Emoji glyph per section id, shared across Home and Café modes. */
-const SECTION_ICON: Record<string, string> = {
-  dashboard: '📊',
-  supplies: '🛒',
-  recipes: '📋',
-  equipment: '⚙️',
-  roi: '📈',
-  spending: '💸',
-  ingredients: '🧺',
-  drinks: '🥤',
-  pricing: '🏷️',
-  menus: '📖',
-  whatif: '🔮',
-  books: '📚',
-  settings: '⚙️',
-};
 
 export function Sidebar() {
   const t = useT();
@@ -39,6 +28,7 @@ export function Sidebar() {
   const cafeSection = useAppStore((s) => s.cafeSection);
   const setHomeSection = useAppStore((s) => s.setHomeSection);
   const setCafeSection = useAppStore((s) => s.setCafeSection);
+  const pill = `navpill-${useId()}`;
 
   const sections = mode === 'home' ? HOME_SECTIONS : CAFE_SECTIONS;
   const active = mode === 'home' ? homeSection : cafeSection;
@@ -60,13 +50,15 @@ export function Sidebar() {
 
   return (
     <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col bg-espresso text-coffee-100 lg:flex">
-      <div className="flex items-center gap-2 px-5 pb-4 pt-6">
-        <span className="text-2xl">☕</span>
+      <div className="flex items-center gap-2.5 px-5 pb-3 pt-6">
+        <span className="text-caramel">
+          <BrandMark size={30} />
+        </span>
         <span className="font-display text-xl font-bold text-white">{t('app.name')}</span>
       </div>
-      <p className="px-5 pb-4 text-xs text-coffee-400">{t('app.tagline')}</p>
+      <p className="px-5 pb-4 text-xs leading-relaxed text-coffee-400">{t('app.tagline')}</p>
 
-      <div className="px-3 pb-2">
+      <div className="px-3 pb-3">
         <ModeSwitcher />
       </div>
 
@@ -74,16 +66,30 @@ export function Sidebar() {
         {sections.map((s) => {
           const locked = s.feature ? !hasFeature(tier, s.feature) : false;
           const isActive = active === s.id;
+          const Icon = SECTION_ICON[s.id];
           return (
             <button
               key={s.id}
               type="button"
               onClick={() => setActive(s.id as never)}
-              className={cn('w-full text-left', 'sidebar-link', isActive && 'sidebar-link-active')}
+              aria-current={isActive ? 'page' : undefined}
+              className={cn(
+                'sidebar-link w-full text-left',
+                isActive ? 'text-espresso' : 'text-coffee-200 hover:bg-white/5 hover:text-white',
+              )}
             >
-              <span className="text-base">{SECTION_ICON[s.id] ?? '•'}</span>
-              <span className="flex-1">{t(s.tKey)}</span>
-              {locked && <span className="text-[10px] opacity-80">🔒</span>}
+              {isActive && (
+                <motion.span
+                  layoutId={pill}
+                  transition={indicatorSpring}
+                  className="absolute inset-0 rounded-xl bg-caramel shadow-sm"
+                />
+              )}
+              <span className="relative z-10 flex w-full items-center gap-3">
+                {Icon && <Icon className="h-[18px] w-[18px]" strokeWidth={2.2} />}
+                <span className="flex-1">{t(s.tKey)}</span>
+                {locked && <Lock className="h-3.5 w-3.5 opacity-70" />}
+              </span>
             </button>
           );
         })}
@@ -111,9 +117,9 @@ export function Sidebar() {
           type="button"
           aria-label={t('set.title')}
           onClick={openSettings}
-          className="rounded-lg px-2 py-1 text-base transition-colors hover:bg-white/10"
+          className="flex items-center rounded-lg p-1.5 text-coffee-300 transition-colors hover:bg-white/10 hover:text-white"
         >
-          ⚙️
+          <Settings className="h-4 w-4" strokeWidth={2.2} />
         </button>
       </div>
     </aside>

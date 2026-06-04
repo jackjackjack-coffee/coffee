@@ -3,6 +3,8 @@ import { ensureSeeded } from './data/db';
 import { useAppStore } from './store/useAppStore';
 import { useLicenseValidation } from './license/useLicense';
 import { AppShell } from './components/AppShell';
+import { BrandMark } from './components/BrandMark';
+import { useT } from './i18n';
 
 export default function App() {
   const language = useAppStore((s) => s.language);
@@ -26,13 +28,22 @@ export default function App() {
 
   useLicenseValidation();
 
-  if (!ready) {
-    return (
-      <div className="flex min-h-screen items-center justify-center text-coffee-500">
-        <span className="animate-pulse text-2xl">☕</span>
-      </div>
-    );
-  }
+  if (!ready) return <Loader />;
 
   return <AppShell />;
+}
+
+function Loader() {
+  const t = useT();
+  return (
+    <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-cream bg-grain">
+      <span className="animate-bob text-coffee-700">
+        <BrandMark size={56} />
+      </span>
+      <span className="font-display text-lg font-semibold text-coffee-800">{t('app.name')}</span>
+      <span className="h-1 w-28 overflow-hidden rounded-full bg-coffee-100">
+        <span className="block h-full w-1/2 animate-loadbar rounded-full bg-caramel" />
+      </span>
+    </div>
+  );
 }

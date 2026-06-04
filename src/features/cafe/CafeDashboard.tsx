@@ -1,10 +1,13 @@
 import { useMemo } from 'react';
+import { motion } from 'framer-motion';
 import { useLiveQuery } from 'dexie-react-hooks';
+import { CircleDollarSign, Download, Layers, Percent, TriangleAlert } from 'lucide-react';
 import { db } from '../../data/db';
 import type { Drink, Ingredient } from '../../data/types';
 import { cafeDrinkEconomics, indexById } from '../../store/selectors';
 import { useFormat } from '../../lib/hooks';
 import { useT } from '../../i18n';
+import { fadeUp, staggerContainer } from '../../lib/motion';
 import { downloadCSV } from '../../lib/csv';
 import { exportTablePDF } from '../../lib/pdf';
 import { Button } from '../../components/ui/Button';
@@ -12,6 +15,7 @@ import { Card, SectionTitle } from '../../components/ui/Card';
 import { EmptyState } from '../../components/ui/EmptyState';
 import { LockedFeature } from '../../components/ui/Pro';
 import { Stat } from '../../components/ui/Stat';
+import { AnimatedNumber } from '../../components/ui/AnimatedNumber';
 import { useActiveMenu } from './useMenus';
 
 export function CafeDashboard() {
@@ -66,62 +70,89 @@ export function CafeDashboard() {
     });
 
   return (
-    <div className="space-y-4">
+    <motion.div variants={staggerContainer} initial="hidden" animate="show" className="space-y-5">
       <SectionTitle title={t('cafe.dash.title')} subtitle={menu.name} />
 
       {drinks.length === 0 ? (
         <EmptyState icon="📊" text={t('cafe.dash.empty')} />
       ) : (
         <>
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-            <Stat label={t('cafe.dash.avgMargin')} value={fmt.pct(avgMargin)} />
-            <Stat label={t('cafe.dash.avgCost')} value={fmt.money(avgCogs)} />
-            <Stat label={t('common.count', { n: rows.length })} value={fmt.num(rows.length)} />
+          <motion.div variants={fadeUp} className="grid grid-cols-2 gap-3 sm:grid-cols-4">
             <Stat
+              icon={Percent}
+              label={t('cafe.dash.avgMargin')}
+              value={<AnimatedNumber value={avgMargin * 100} format={(n) => fmt.pct(n / 100)} />}
+            />
+            <Stat
+              icon={CircleDollarSign}
+              label={t('cafe.dash.avgCost')}
+              value={<AnimatedNumber value={avgCogs} format={fmt.money} />}
+            />
+            <Stat
+              icon={Layers}
+              label={t('common.count', { n: rows.length })}
+              value={<AnimatedNumber value={rows.length} format={(n) => fmt.num(Math.round(n))} />}
+            />
+            <Stat
+              icon={TriangleAlert}
               label={t('drink.lowMargin')}
-              value={fmt.num(flagged)}
+              value={<AnimatedNumber value={flagged} format={(n) => fmt.num(Math.round(n))} />}
               accent={flagged > 0 ? 'bad' : 'good'}
               sub={flagged > 0 ? t('cafe.dash.flagged', { n: flagged }) : undefined}
             />
-          </div>
+          </motion.div>
 
-          <LockedFeature feature="cafe.dashboard">
-            <Card className="p-0">
-              <div className="flex items-center justify-between border-b border-coffee-100 px-3 py-2">
-                <span className="text-xs font-semibold uppercase text-coffee-400">{t('cafe.dash.sortMargin')}</span>
-                <div className="flex gap-2">
-                  <Button variant="ghost" className="px-2 py-1 text-xs" onClick={exportCsv}>
-                    CSV
-                  </Button>
-                  <Button variant="ghost" className="px-2 py-1 text-xs" onClick={exportPdf}>
-                    PDF
-                  </Button>
-                </div>
-              </div>
-              {rows.map((r) => (
-                <div
-                  key={r.drink.id}
-                  className={`grid grid-cols-12 items-center gap-2 border-b border-coffee-50 px-3 py-2 last:border-0 ${
-                    r.e.isLowMargin ? 'bg-red-50' : ''
-                  }`}
-                >
-                  <div className="col-span-4 min-w-0 truncate text-sm font-medium text-coffee-900">{r.drink.name}</div>
-                  <div className="col-span-2 text-right text-sm text-coffee-600 tnum">{fmt.money(r.e.cogs)}</div>
-                  <div className="col-span-2 text-right text-sm text-coffee-600 tnum">{fmt.money(r.e.price)}</div>
-                  <div className="col-span-2 text-right text-xs text-coffee-500 tnum">{fmt.pct(r.e.costRatio)}</div>
-                  <div
-                    className={`col-span-2 text-right text-sm font-bold tnum ${
-                      r.e.isLowMargin ? 'text-red-600' : 'text-emerald-700'
-                    }`}
-                  >
-                    {fmt.pct(r.e.margin)}
+          <motion.div variants={fadeUp}>
+            <LockedFeature feature="cafe.dashboard">
+              <Card className="p-0">
+                <div className="flex items-center justify-between border-b border-coffee-100 px-4 py-2.5">
+                  <span className="text-xs font-semibold uppercase tracking-wide text-coffee-400">
+                    {t('cafe.dash.sortMargin')}
+                  </span>
+                  <div className="flex gap-2">
+                    <Button variant="ghost" className="gap-1.5 px-2 py-1 text-xs" onClick={exportCsv}>
+                      <Download className="h-3.5 w-3.5" strokeWidth={2.2} /> CSV
+                    </Button>
+                    <Button variant="ghost" className="gap-1.5 px-2 py-1 text-xs" onClick={exportPdf}>
+                      <Download className="h-3.5 w-3.5" strokeWidth={2.2} /> PDF
+                    </Button>
                   </div>
                 </div>
-              ))}
-            </Card>
-          </LockedFeature>
+                <motion.div variants={staggerContainer} initial="hidden" animate="show">
+                  {rows.map((r) => (
+                    <motion.div
+                      key={r.drink.id}
+                      variants={fadeUp}
+                      className={`grid grid-cols-12 items-center gap-2 border-b border-coffee-50 px-4 py-2.5 transition-colors last:border-0 hover:bg-coffee-50/60 ${
+                        r.e.isLowMargin ? 'bg-red-50/70' : ''
+                      }`}
+                    >
+                      <div className="col-span-4 min-w-0">
+                        <div className="truncate text-sm font-medium text-coffee-900">{r.drink.name}</div>
+                        <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-coffee-100">
+                          <div
+                            className={`h-full rounded-full ${r.e.isLowMargin ? 'bg-red-400' : 'bg-emerald-500'}`}
+                            style={{ width: `${Math.max(4, Math.min(100, r.e.margin * 100))}%` }}
+                          />
+                        </div>
+                      </div>
+                      <div className="col-span-3 text-right text-sm text-coffee-600 tnum">{fmt.money(r.e.cogs)}</div>
+                      <div className="col-span-2 text-right text-sm text-coffee-600 tnum">{fmt.money(r.e.price)}</div>
+                      <div
+                        className={`col-span-3 text-right text-sm font-bold tnum ${
+                          r.e.isLowMargin ? 'text-red-600' : 'text-emerald-700'
+                        }`}
+                      >
+                        {fmt.pct(r.e.margin)}
+                      </div>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </Card>
+            </LockedFeature>
+          </motion.div>
         </>
       )}
-    </div>
+    </motion.div>
   );
 }
