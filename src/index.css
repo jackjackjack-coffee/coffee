@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-cream text-coffee-950 antialiased;
+    font-feature-settings: 'tnum' 1;
+  }
+  /* tabular numbers for money columns */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-coffee-700 text-white hover:bg-coffee-800;
+  }
+  .btn-secondary {
+    @apply btn border border-coffee-200 bg-white text-coffee-800 hover:bg-coffee-50;
+  }
+  .btn-ghost {
+    @apply btn text-coffee-700 hover:bg-coffee-100;
+  }
+  .card {
+    @apply rounded-2xl border border-coffee-100 bg-white p-4 shadow-sm sm:p-5;
+  }
+  .input {
+    @apply w-full rounded-lg border border-coffee-200 bg-white px-3 py-2 text-sm outline-none focus:border-coffee-500 focus:ring-2 focus:ring-coffee-200;
+  }
+  .label {
+    @apply mb-1 block text-xs font-medium text-coffee-700;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium;
+  }
+}
