@@ -1,9 +1,11 @@
+import { Settings } from 'lucide-react';
 import { useT } from '../i18n';
 import { cn } from '../lib/cn';
 import { useAppStore } from '../store/useAppStore';
 import { CURRENCY_SYMBOL } from '../lib/format';
 import type { Currency, Language } from '../data/types';
 import { ModeSwitcher } from './ModeSwitcher';
+import { BrandMark } from './BrandMark';
 
 const CURRENCIES: Currency[] = ['KRW', 'USD', 'EUR'];
 
@@ -37,7 +39,9 @@ export function Header() {
       <div className="mx-auto max-w-3xl px-4 py-3">
         <div className="flex items-center justify-between gap-2">
           <div className="flex min-w-0 items-center gap-2">
-            <span className="text-xl">☕</span>
+            <span className="text-coffee-700">
+              <BrandMark size={24} />
+            </span>
             <span className="truncate text-base font-bold text-coffee-900">{t('app.name')}</span>
           </div>
           <div className="flex items-center gap-1">
@@ -64,7 +68,7 @@ export function Header() {
               onClick={openSettings}
               className="btn-ghost px-2 py-1"
             >
-              ⚙️
+              <Settings className="h-4 w-4" strokeWidth={2.2} />
             </button>
           </div>
         </div>

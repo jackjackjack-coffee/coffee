@@ -136,6 +136,7 @@ const en = {
   'home.dash.split': 'Home vs Cafe',
   'home.dash.noData': 'Log a few coffees to see your trends.',
   'home.dash.projalc': 'At {cups} cups/day, a year of cafe coffee would cost {amount}.',
+  'home.dash.projTitle': 'Projected yearly cost',
 
   // home settings inputs
   'home.cupsPerDay': 'Cups per day',
@@ -410,6 +411,7 @@ const ko: Record<TKey, string> = {
   'home.dash.split': '집 vs 카페',
   'home.dash.noData': '커피 몇 잔을 기록하면 추이가 보입니다.',
   'home.dash.projalc': '하루 {cups}잔 기준, 1년 카페 커피는 {amount}입니다.',
+  'home.dash.projTitle': '예상 1년 비용',
 
   'home.cupsPerDay': '하루 잔수',
   'home.cafePrice': '카페 평균 한 잔 가격',
