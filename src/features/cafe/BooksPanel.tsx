@@ -80,13 +80,13 @@ export function BooksPanel() {
         }
       />
 
-      <div className="flex gap-1 rounded-xl bg-coffee-100 p-1 text-sm">
+      <div className="flex gap-1 rounded-xl bg-white/5 p-1 text-sm">
         {(['month', 'year', 'all'] as Period[]).map((p) => (
           <button
             key={p}
             type="button"
             onClick={() => setPeriod(p)}
-            className={`flex-1 rounded-lg py-1.5 font-medium ${period === p ? 'bg-white text-coffee-900 shadow-sm' : 'text-coffee-600'}`}
+            className={`flex-1 rounded-lg py-1.5 font-medium transition-colors ${period === p ? 'bg-white/15 text-white shadow-sm ring-1 ring-white/15' : 'text-coffee-500 hover:text-coffee-800'}`}
           >
             {p === 'month' ? t('spend.month') : p === 'year' ? t('spend.year') : t('common.total')}
           </button>
@@ -94,10 +94,10 @@ export function BooksPanel() {
       </div>
 
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-        <Stat label={t('books.revenue')} value={fmt.money(revenue)} />
-        <Stat label={t('books.cogs')} value={fmt.money(cogs)} />
-        <Stat label={t('books.grossProfit')} value={fmt.money(gross)} accent={gross >= 0 ? 'good' : 'bad'} />
-        <Stat label={t('books.netProfit')} value={fmt.money(net)} accent={net >= 0 ? 'good' : 'bad'} sub={`− ${fmt.money(otherCosts)} ${t('books.otherCosts')}`} />
+        <Stat label={t('books.revenue')} amount={revenue} format={fmt.money} />
+        <Stat label={t('books.cogs')} amount={cogs} format={fmt.money} />
+        <Stat label={t('books.grossProfit')} amount={gross} format={fmt.money} accent={gross >= 0 ? 'good' : 'bad'} />
+        <Stat label={t('books.netProfit')} amount={net} format={fmt.money} accent={net >= 0 ? 'good' : 'bad'} sub={`− ${fmt.money(otherCosts)} ${t('books.otherCosts')}`} />
       </div>
 
       {!hasData ? (
@@ -114,13 +114,18 @@ export function BooksPanel() {
             <div className="h-56 w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={trend} margin={{ top: 8, right: 8, left: 8, bottom: 4 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#eaddcf" vertical={false} />
-                  <XAxis dataKey="label" tick={{ fontSize: 10 }} stroke="#a98a6d" />
-                  <YAxis tick={{ fontSize: 10 }} width={44} tickFormatter={(v) => fmt.num(v / 1000) + 'k'} stroke="#a98a6d" />
-                  <Tooltip formatter={(v: number, n) => [fmt.money(v), n === 'revenue' ? t('books.revenue') : t('books.netProfit')]} />
-                  <Legend formatter={(v) => (v === 'revenue' ? t('books.revenue') : t('books.netProfit'))} wrapperStyle={{ fontSize: 11 }} />
-                  <Bar dataKey="revenue" fill="#d0ac8c" radius={[4, 4, 0, 0]} />
-                  <Bar dataKey="profit" fill="#7c4730" radius={[4, 4, 0, 0]} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#2a2350" vertical={false} />
+                  <XAxis dataKey="label" tick={{ fontSize: 10, fill: '#a99bd0' }} stroke="#3a3170" />
+                  <YAxis tick={{ fontSize: 10, fill: '#a99bd0' }} width={44} tickFormatter={(v) => fmt.num(v / 1000) + 'k'} stroke="#3a3170" />
+                  <Tooltip
+                    cursor={{ fill: 'rgba(255,255,255,0.05)' }}
+                    contentStyle={{ background: '#1b1233', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 12, color: '#f3eefc' }}
+                    labelStyle={{ color: '#c4b5fd' }}
+                    formatter={(v: number, n) => [fmt.money(v), n === 'revenue' ? t('books.revenue') : t('books.netProfit')]}
+                  />
+                  <Legend formatter={(v) => (v === 'revenue' ? t('books.revenue') : t('books.netProfit'))} wrapperStyle={{ fontSize: 11, color: '#cabfe8' }} />
+                  <Bar dataKey="revenue" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="profit" fill="#34d399" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -154,12 +159,12 @@ function RecentList({
   return (
     <div className="grid gap-3 sm:grid-cols-2">
       <Card className="p-0">
-        <div className="border-b border-coffee-100 px-4 py-2 text-xs font-semibold uppercase text-coffee-400">{t('books.sales')}</div>
+        <div className="border-b border-white/10 px-4 py-2 text-xs font-semibold uppercase text-coffee-400">{t('books.sales')}</div>
         {sales.length === 0 ? (
           <div className="px-4 py-3 text-sm text-coffee-400">—</div>
         ) : (
           sales.slice(0, 30).map((s) => (
-            <div key={s.id} className="flex items-center justify-between gap-2 border-b border-coffee-50 px-4 py-2 text-sm last:border-0">
+            <div key={s.id} className="flex items-center justify-between gap-2 border-b border-white/10 px-4 py-2 text-sm last:border-0">
               <div className="min-w-0">
                 <div className="truncate font-medium text-coffee-800">{nameOf(s.drinkId)}</div>
                 <div className="text-xs text-coffee-500">
@@ -168,7 +173,7 @@ function RecentList({
               </div>
               <div className="flex items-center gap-2">
                 <span className="font-semibold text-coffee-900 tnum">{fmt.money(s.qty * s.unitPrice)}</span>
-                <button type="button" className="text-coffee-300 hover:text-red-600" onClick={() => remove.sale(s.id)}>
+                <button type="button" className="text-coffee-300 hover:text-rose-400" onClick={() => remove.sale(s.id)}>
                   ✕
                 </button>
               </div>
@@ -177,12 +182,12 @@ function RecentList({
         )}
       </Card>
       <Card className="p-0">
-        <div className="border-b border-coffee-100 px-4 py-2 text-xs font-semibold uppercase text-coffee-400">{t('books.expenses')}</div>
+        <div className="border-b border-white/10 px-4 py-2 text-xs font-semibold uppercase text-coffee-400">{t('books.expenses')}</div>
         {expenses.length === 0 ? (
           <div className="px-4 py-3 text-sm text-coffee-400">—</div>
         ) : (
           expenses.slice(0, 30).map((e) => (
-            <div key={e.id} className="flex items-center justify-between gap-2 border-b border-coffee-50 px-4 py-2 text-sm last:border-0">
+            <div key={e.id} className="flex items-center justify-between gap-2 border-b border-white/10 px-4 py-2 text-sm last:border-0">
               <div className="min-w-0">
                 <div className="truncate font-medium text-coffee-800">{t(expKey(e.category))}</div>
                 <div className="text-xs text-coffee-500">
@@ -191,8 +196,8 @@ function RecentList({
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <span className="font-semibold text-red-600 tnum">−{fmt.money(e.amount)}</span>
-                <button type="button" className="text-coffee-300 hover:text-red-600" onClick={() => remove.expense(e.id)}>
+                <span className="font-semibold text-rose-400 tnum">−{fmt.money(e.amount)}</span>
+                <button type="button" className="text-coffee-300 hover:text-rose-400" onClick={() => remove.expense(e.id)}>
                   ✕
                 </button>
               </div>

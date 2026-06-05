@@ -68,7 +68,7 @@ export function EquipmentPanel() {
         <>
           <div className="space-y-2">
             {equipment.map((eq) => (
-              <Card key={eq.id} className="cursor-pointer p-0 hover:bg-coffee-50" onClick={() => setEditing(eq)}>
+              <Card key={eq.id} className="cursor-pointer p-0 hover:bg-white/5" onClick={() => setEditing(eq)}>
                 <div className="flex items-center justify-between gap-3 p-4">
                   <div>
                     <div className="font-semibold text-coffee-900">{eq.name}</div>
@@ -101,12 +101,13 @@ export function EquipmentPanel() {
               />
             )}
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-              <Stat label={t('drink.costPerCup')} value={fmt.money(consumable)} />
-              <Stat label={t('equip.depPerCup')} value={fmt.money(totalDep)} />
-              <Stat label={t('home.dash.perCupCafe')} value={fmt.money(settings?.avgCafeCupPrice ?? 0)} />
+              <Stat label={t('drink.costPerCup')} amount={consumable} format={fmt.money} />
+              <Stat label={t('equip.depPerCup')} amount={totalDep} format={fmt.money} />
+              <Stat label={t('home.dash.perCupCafe')} amount={settings?.avgCafeCupPrice ?? 0} format={fmt.money} />
               <Stat
                 label={t('equip.trueCost')}
-                value={fmt.money(trueCost)}
+                amount={trueCost}
+                format={fmt.money}
                 accent={settings && trueCost < settings.avgCafeCupPrice ? 'good' : 'warn'}
               />
             </div>

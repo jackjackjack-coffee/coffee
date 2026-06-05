@@ -20,7 +20,7 @@ export function Field({
       {label && <span className="label">{label}</span>}
       {children}
       {error ? (
-        <span className="mt-1 block text-xs text-red-600">{error}</span>
+        <span className="mt-1 block text-xs text-rose-400">{error}</span>
       ) : (
         hint && <span className="mt-1 block text-xs text-coffee-500">{hint}</span>
       )}

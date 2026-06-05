@@ -16,7 +16,9 @@ export function ModeSwitcher() {
       aria-pressed={mode === m}
       className={cn(
         'flex flex-1 items-center justify-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold transition-colors',
-        mode === m ? 'bg-white text-coffee-900 shadow-sm' : 'text-coffee-600 hover:text-coffee-800',
+        mode === m
+          ? 'bg-white/15 text-white shadow-sm ring-1 ring-white/15'
+          : 'text-coffee-500 hover:text-coffee-800',
       )}
     >
       <span className="text-base">{emoji}</span>
@@ -28,7 +30,7 @@ export function ModeSwitcher() {
   );
 
   return (
-    <div className="flex gap-1 rounded-2xl bg-coffee-100 p-1">
+    <div className="flex gap-1 rounded-2xl bg-white/5 p-1">
       {tab('home', t('mode.home'), t('mode.home.sub'), '🏠')}
       {tab('cafe', t('mode.cafe'), t('mode.cafe.sub'), '🏪')}
     </div>

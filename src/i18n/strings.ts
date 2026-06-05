@@ -5,6 +5,7 @@ import type { Language } from '../data/types';
 const en = {
   'app.name': 'Bean Counter',
   'app.tagline': 'Coffee, seen through an accountant’s eyes.',
+  'brand.line2': 'Coffee in numbers.',
 
   'mode.home': 'Home',
   'mode.cafe': 'Café',
@@ -287,6 +288,7 @@ export type TKey = keyof typeof en;
 const ko: Record<TKey, string> = {
   'app.name': '빈카운터',
   'app.tagline': '커피를 회계사의 눈으로.',
+  'brand.line2': '숫자로 보는 커피.',
 
   'mode.home': '홈',
   'mode.cafe': '카페',

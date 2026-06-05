@@ -59,8 +59,8 @@ export function SpendingPanel() {
       />
 
       <div className="grid grid-cols-2 gap-2">
-        <Stat label={t('spend.month')} value={fmt.money(monthTotal)} />
-        <Stat label={t('spend.year')} value={fmt.money(yearTotal)} />
+        <Stat label={t('spend.month')} amount={monthTotal} format={fmt.money} />
+        <Stat label={t('spend.year')} amount={yearTotal} format={fmt.money} />
       </div>
 
       {entries.length === 0 ? (
@@ -72,17 +72,22 @@ export function SpendingPanel() {
             <div className="h-52 w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={trend} margin={{ top: 8, right: 8, left: 8, bottom: 4 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#eaddcf" vertical={false} />
-                  <XAxis dataKey="label" tick={{ fontSize: 10 }} stroke="#a98a6d" />
-                  <YAxis tick={{ fontSize: 10 }} width={44} tickFormatter={(v) => fmt.num(v / 1000) + 'k'} stroke="#a98a6d" />
-                  <Tooltip formatter={(v: number) => [fmt.money(v), t('common.total')]} />
-                  <Bar dataKey="total" fill="#965938" radius={[4, 4, 0, 0]} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#2a2350" vertical={false} />
+                  <XAxis dataKey="label" tick={{ fontSize: 10, fill: '#a99bd0' }} stroke="#3a3170" />
+                  <YAxis tick={{ fontSize: 10, fill: '#a99bd0' }} width={44} tickFormatter={(v) => fmt.num(v / 1000) + 'k'} stroke="#3a3170" />
+                  <Tooltip
+                    cursor={{ fill: 'rgba(255,255,255,0.05)' }}
+                    contentStyle={{ background: '#1b1233', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 12, color: '#f3eefc' }}
+                    labelStyle={{ color: '#c4b5fd' }}
+                    formatter={(v: number) => [fmt.money(v), t('common.total')]}
+                  />
+                  <Bar dataKey="total" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
           </Card>
 
-          <Card className="divide-y divide-coffee-50 p-0">
+          <Card className="divide-y divide-white/5 p-0">
             {entries.slice(0, 50).map((e) => (
               <div key={e.id} className="flex items-center justify-between gap-3 px-4 py-2.5">
                 <div>
@@ -98,7 +103,7 @@ export function SpendingPanel() {
                     type="button"
                     aria-label={t('common.delete')}
                     onClick={() => remove.spend(e.id)}
-                    className="text-coffee-300 hover:text-red-600"
+                    className="text-coffee-300 hover:text-rose-400"
                   >
                     ✕
                   </button>
