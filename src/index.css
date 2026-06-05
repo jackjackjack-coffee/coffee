@@ -11,37 +11,13 @@
     color: #f4eefe;
     font-feature-settings: 'tnum' 1;
     min-height: 100vh;
-    /* Dreamy celestial sky: layered radial glows over a deep night→plum gradient. */
-    background-color: #0a0717;
-    background-image:
-      radial-gradient(60rem 60rem at 12% -8%, rgba(124, 58, 237, 0.3), transparent 60%),
-      radial-gradient(48rem 48rem at 100% 0%, rgba(56, 189, 248, 0.12), transparent 55%),
-      radial-gradient(70rem 70rem at 50% 118%, rgba(168, 85, 247, 0.2), transparent 60%),
-      linear-gradient(180deg, #0a0717 0%, #140d2b 45%, #0e0b1a 100%);
-    background-attachment: fixed;
-  }
-  /* Pure-CSS starfield (no image asset) layered behind the app. */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    background-image:
-      radial-gradient(1px 1px at 20% 30%, rgba(255, 255, 255, 0.7), transparent),
-      radial-gradient(1px 1px at 70% 60%, rgba(255, 255, 255, 0.5), transparent),
-      radial-gradient(1.5px 1.5px at 40% 80%, rgba(196, 181, 253, 0.6), transparent),
-      radial-gradient(1px 1px at 85% 25%, rgba(255, 255, 255, 0.5), transparent),
-      radial-gradient(1px 1px at 55% 15%, rgba(255, 255, 255, 0.4), transparent),
-      radial-gradient(1px 1px at 32% 55%, rgba(255, 255, 255, 0.45), transparent),
-      radial-gradient(1.5px 1.5px at 90% 75%, rgba(196, 181, 253, 0.5), transparent);
-    background-repeat: repeat;
-    background-size: 480px 480px;
-    opacity: 0.5;
+    /* Solid dark fallback; the celestial sky, clouds & stars are painted by the
+       <Backdrop /> SVG layer rendered behind the app. */
+    background-color: #09061a;
   }
   #root {
     position: relative;
-    z-index: 1;
+    z-index: 0;
   }
   /* tabular numbers for money columns */
   .tnum {
