@@ -98,27 +98,27 @@ export function RoiPanel() {
                       <stop offset="100%" stopColor="#7c3aed" stopOpacity={0.05} />
                     </linearGradient>
                   </defs>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#2a2350" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e4ddf2" />
                   <XAxis
                     dataKey="month"
-                    tick={{ fontSize: 11, fill: '#a99bd0' }}
+                    tick={{ fontSize: 11, fill: '#736691' }}
                     tickFormatter={(m) => `${m}m`}
-                    stroke="#3a3170"
+                    stroke="#cfc4e4"
                   />
                   <YAxis
-                    tick={{ fontSize: 11, fill: '#a99bd0' }}
+                    tick={{ fontSize: 11, fill: '#736691' }}
                     width={48}
                     tickFormatter={(v) => fmt.num(v / 1000) + 'k'}
-                    stroke="#3a3170"
+                    stroke="#cfc4e4"
                   />
                   <Tooltip
-                    contentStyle={{ background: '#1b1233', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 12, color: '#f3eefc' }}
-                    labelStyle={{ color: '#c4b5fd' }}
+                    contentStyle={{ background: '#ffffff', border: '1px solid #ddd4ec', borderRadius: 12, color: '#241d33' }}
+                    labelStyle={{ color: '#736691' }}
                     formatter={(v: number) => [fmt.money(v), t('roi.netSavings')]}
                     labelFormatter={(m) => t('roi.months', { n: m as number })}
                   />
-                  <ReferenceLine y={0} stroke="#8b7cb8" strokeDasharray="4 4" />
-                  <Area type="monotone" dataKey="net" stroke="#c4b5fd" strokeWidth={2.5} fill="url(#roiFill)" dot={false} />
+                  <ReferenceLine y={0} stroke="#c3b7db" strokeDasharray="4 4" />
+                  <Area type="monotone" dataKey="net" stroke="#7c3aed" strokeWidth={2.5} fill="url(#roiFill)" dot={false} />
                 </AreaChart>
               </ResponsiveContainer>
             </div>

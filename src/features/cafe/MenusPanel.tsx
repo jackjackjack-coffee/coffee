@@ -118,7 +118,7 @@ function MenuRow({
           </button>
         )}
         {canDelete && (
-          <button type="button" aria-label={t('common.delete')} className="text-coffee-300 hover:text-rose-400" onClick={onDelete}>
+          <button type="button" aria-label={t('common.delete')} className="text-coffee-300 hover:text-rose-600" onClick={onDelete}>
             ✕
           </button>
         )}

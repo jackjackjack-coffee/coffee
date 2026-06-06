@@ -45,8 +45,8 @@ export function HomeDashboard() {
     <div className="space-y-4">
       <SectionTitle title={t('home.dash.title')} />
 
-      <Card className="bg-gradient-to-br from-violet-600/40 to-indigo-900/40 text-white">
-        <p className="text-sm leading-relaxed text-coffee-800">
+      <Card className="bg-gradient-to-br from-violet-300/30 to-fuchsia-200/25">
+        <p className="text-sm leading-relaxed text-coffee-600">
           {yearSpend > 0
             ? t('home.dash.hook', { spent: fmt.money(yearSpend), saved: fmt.money(annualSaving) })
             : t('home.dash.projalc', { cups: fmt.num(settings.cupsPerDay), amount: fmt.money(cafeAnnual) })}
@@ -70,7 +70,7 @@ export function HomeDashboard() {
               {t('mode.home')} {homePct}% · {t('mode.cafe')} {100 - homePct}%
             </span>
           </div>
-          <div className="flex h-3 overflow-hidden rounded-full bg-white/5">
+          <div className="flex h-3 overflow-hidden rounded-full bg-coffee-100/60">
             <div className="bg-violet-500" style={{ width: `${homePct}%` }} />
             <div className="bg-gold" style={{ width: `${100 - homePct}%` }} />
           </div>

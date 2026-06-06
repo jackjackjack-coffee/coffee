@@ -88,7 +88,7 @@ export function CafeDashboard() {
 
           <LockedFeature feature="cafe.dashboard">
             <Card className="p-0">
-              <div className="flex items-center justify-between border-b border-white/10 px-3 py-2">
+              <div className="flex items-center justify-between border-b border-coffee-100 px-3 py-2">
                 <span className="text-xs font-semibold uppercase text-coffee-400">{t('cafe.dash.sortMargin')}</span>
                 <div className="flex gap-2">
                   <Button variant="ghost" className="px-2 py-1 text-xs" onClick={exportCsv}>
@@ -102,7 +102,7 @@ export function CafeDashboard() {
               {rows.map((r) => (
                 <div
                   key={r.drink.id}
-                  className={`grid grid-cols-12 items-center gap-2 border-b border-white/10 px-3 py-2 last:border-0 ${
+                  className={`grid grid-cols-12 items-center gap-2 border-b border-coffee-100 px-3 py-2 last:border-0 ${
                     r.e.isLowMargin ? 'bg-rose-500/10' : ''
                   }`}
                 >
@@ -112,7 +112,7 @@ export function CafeDashboard() {
                   <div className="col-span-2 text-right text-xs text-coffee-500 tnum">{fmt.pct(r.e.costRatio)}</div>
                   <div
                     className={`col-span-2 text-right text-sm font-bold tnum ${
-                      r.e.isLowMargin ? 'text-rose-400' : 'text-mint'
+                      r.e.isLowMargin ? 'text-rose-600' : 'text-mint'
                     }`}
                   >
                     {fmt.pct(r.e.margin)}

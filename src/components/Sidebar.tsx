@@ -42,9 +42,9 @@ function Brand({ compact }: { compact?: boolean }) {
     <div className="flex items-center gap-2.5">
       <Emblem className={cn('shrink-0 text-starlit', compact ? 'h-7 w-7' : 'h-9 w-9')} />
       <div className="leading-tight">
-        <div className="text-sm font-bold uppercase tracking-[0.16em] text-coffee-900">{t('app.name')}</div>
+        <div className="text-sm font-bold uppercase tracking-[0.16em] text-white">{t('app.name')}</div>
         {!compact && (
-          <div className="text-[10px] uppercase tracking-[0.18em] text-coffee-400">{t('brand.line2')}</div>
+          <div className="text-[10px] uppercase tracking-[0.18em] text-white/55">{t('brand.line2')}</div>
         )}
       </div>
     </div>
@@ -77,7 +77,7 @@ export function Sidebar() {
       onClick={() => setLanguage(l)}
       className={cn(
         'px-2 py-1 text-xs font-semibold transition-colors',
-        language === l ? 'text-coffee-900' : 'text-coffee-400 hover:text-coffee-700',
+        language === l ? 'text-white' : 'text-white/45 hover:text-white/80',
       )}
     >
       {label}
@@ -92,7 +92,7 @@ export function Sidebar() {
           type="button"
           aria-label="menu"
           onClick={() => setOpen(true)}
-          className="rounded-lg p-1.5 text-coffee-700 hover:bg-white/10"
+          className="rounded-lg p-1.5 text-white/80 hover:bg-white/10"
         >
           <Hamburger className="h-5 w-5" />
         </button>
@@ -101,7 +101,7 @@ export function Sidebar() {
           type="button"
           aria-label={t('set.title')}
           onClick={openSettings}
-          className="rounded-lg p-1.5 text-coffee-700 hover:bg-white/10"
+          className="rounded-lg p-1.5 text-white/80 hover:bg-white/10"
         >
           ⚙️
         </button>
@@ -143,7 +143,7 @@ export function Sidebar() {
                 aria-current={isActive ? 'page' : undefined}
                 className={cn(
                   'flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-medium transition-colors',
-                  isActive ? 'nav-item-active' : 'text-coffee-500 hover:bg-white/5 hover:text-coffee-900',
+                  isActive ? 'nav-item-active' : 'text-white/65 hover:bg-white/10 hover:text-white',
                 )}
               >
                 <Icon className="h-5 w-5 shrink-0" />
@@ -165,10 +165,10 @@ export function Sidebar() {
             aria-label={t('set.currency')}
             value={currency}
             onChange={(e) => setCurrency(e.target.value as Currency)}
-            className="rounded-lg border border-white/15 bg-white/5 px-2 py-1 text-xs font-semibold text-coffee-700"
+            className="rounded-lg border border-white/15 bg-white/5 px-2 py-1 text-xs font-semibold text-white/85"
           >
             {CURRENCIES.map((c) => (
-              <option key={c} value={c} className="bg-plum text-coffee-50">
+              <option key={c} value={c} className="bg-night text-white">
                 {CURRENCY_SYMBOL[c]} {c}
               </option>
             ))}
@@ -177,7 +177,7 @@ export function Sidebar() {
             type="button"
             aria-label={t('set.title')}
             onClick={openSettings}
-            className="ml-auto rounded-lg p-1.5 text-coffee-700 hover:bg-white/10"
+            className="ml-auto rounded-lg p-1.5 text-white/80 hover:bg-white/10"
           >
             ⚙️
           </button>

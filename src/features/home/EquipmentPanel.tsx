@@ -68,7 +68,7 @@ export function EquipmentPanel() {
         <>
           <div className="space-y-2">
             {equipment.map((eq) => (
-              <Card key={eq.id} className="cursor-pointer p-0 hover:bg-white/5" onClick={() => setEditing(eq)}>
+              <Card key={eq.id} className="cursor-pointer p-0 hover:bg-coffee-100/60" onClick={() => setEditing(eq)}>
                 <div className="flex items-center justify-between gap-3 p-4">
                   <div>
                     <div className="font-semibold text-coffee-900">{eq.name}</div>

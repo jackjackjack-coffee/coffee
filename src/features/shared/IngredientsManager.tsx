@@ -80,19 +80,19 @@ export function IngredientsManager({ mode }: { mode: Mode }) {
               <div className="mb-1 px-1 text-xs font-semibold uppercase tracking-wide text-coffee-400">
                 {t(catKey(cat))}
               </div>
-              <Card className="divide-y divide-white/5 p-0">
+              <Card className="divide-y divide-coffee-100 p-0">
                 {items.map((ing) => (
                   <button
                     key={ing.id}
                     type="button"
                     onClick={() => setEditing(ing)}
-                    className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left hover:bg-white/5"
+                    className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left hover:bg-coffee-100/60"
                   >
                     <div className="min-w-0">
                       <div className="flex items-center gap-2">
                         <span className="truncate font-medium text-coffee-900">{ing.name}</span>
                         {ing.isPreset && (
-                          <span className="chip bg-white/5 text-coffee-500" title={t('flag.example')}>
+                          <span className="chip bg-coffee-100/60 text-coffee-500" title={t('flag.example')}>
                             {t('common.preset')}
                           </span>
                         )}
@@ -232,7 +232,7 @@ function IngredientForm({
           value={supplier}
           onChange={setSupplier}
         />
-        <div className="flex items-center justify-between rounded-xl bg-white/5 px-4 py-3">
+        <div className="flex items-center justify-between rounded-xl bg-coffee-100/60 px-4 py-3">
           <span className="text-sm text-coffee-600">
             {t('ing.unitCost')}
             <Info text={t('ing.hint')} />

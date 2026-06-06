@@ -28,7 +28,7 @@ export function Stat({
       : accent === 'warn'
         ? 'text-gold'
         : accent === 'bad'
-          ? 'text-rose-400'
+          ? 'text-rose-600'
           : 'text-coffee-900';
   return (
     <div className={cn('glass rounded-xl p-3', className)}>

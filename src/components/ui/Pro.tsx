@@ -52,13 +52,13 @@ export function LockedFeature({
   const defaultBlurb = isHome ? t('pro.homeBlurb') : t('pro.cafeBlurb');
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-white/10">
+    <div className="relative overflow-hidden rounded-2xl border border-coffee-100">
       {children && (
         <div aria-hidden className="pointer-events-none select-none opacity-40 blur-[3px]">
           {children}
         </div>
       )}
-      <div className="absolute inset-0 flex items-center justify-center bg-night/75 p-6 backdrop-blur-md">
+      <div className="absolute inset-0 flex items-center justify-center bg-glassbg/80 p-6 backdrop-blur-md">
         <div className="max-w-sm text-center">
           <div className="mb-2 inline-block">
             <ProBadge />

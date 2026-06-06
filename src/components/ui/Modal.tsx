@@ -34,7 +34,7 @@ export function Modal({ open, onClose, title, children, footer, className }: Pro
         role="dialog"
         aria-modal="true"
         className={cn(
-          'relative z-10 max-h-[92vh] w-full overflow-y-auto rounded-t-2xl border border-white/10 bg-plum/95 p-4 shadow-xl backdrop-blur-xl sm:max-w-lg sm:rounded-2xl sm:p-6',
+          'relative z-10 max-h-[92vh] w-full overflow-y-auto rounded-t-2xl border border-white/70 bg-glassbg/95 p-4 shadow-xl backdrop-blur-xl sm:max-w-lg sm:rounded-2xl sm:p-6',
           className,
         )}
       >

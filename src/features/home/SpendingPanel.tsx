@@ -72,13 +72,13 @@ export function SpendingPanel() {
             <div className="h-52 w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={trend} margin={{ top: 8, right: 8, left: 8, bottom: 4 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#2a2350" vertical={false} />
-                  <XAxis dataKey="label" tick={{ fontSize: 10, fill: '#a99bd0' }} stroke="#3a3170" />
-                  <YAxis tick={{ fontSize: 10, fill: '#a99bd0' }} width={44} tickFormatter={(v) => fmt.num(v / 1000) + 'k'} stroke="#3a3170" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e4ddf2" vertical={false} />
+                  <XAxis dataKey="label" tick={{ fontSize: 10, fill: '#736691' }} stroke="#cfc4e4" />
+                  <YAxis tick={{ fontSize: 10, fill: '#736691' }} width={44} tickFormatter={(v) => fmt.num(v / 1000) + 'k'} stroke="#cfc4e4" />
                   <Tooltip
-                    cursor={{ fill: 'rgba(255,255,255,0.05)' }}
-                    contentStyle={{ background: '#1b1233', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 12, color: '#f3eefc' }}
-                    labelStyle={{ color: '#c4b5fd' }}
+                    cursor={{ fill: 'rgba(40,30,80,0.06)' }}
+                    contentStyle={{ background: '#ffffff', border: '1px solid #ddd4ec', borderRadius: 12, color: '#241d33' }}
+                    labelStyle={{ color: '#736691' }}
                     formatter={(v: number) => [fmt.money(v), t('common.total')]}
                   />
                   <Bar dataKey="total" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
@@ -87,7 +87,7 @@ export function SpendingPanel() {
             </div>
           </Card>
 
-          <Card className="divide-y divide-white/5 p-0">
+          <Card className="divide-y divide-coffee-100 p-0">
             {entries.slice(0, 50).map((e) => (
               <div key={e.id} className="flex items-center justify-between gap-3 px-4 py-2.5">
                 <div>
@@ -103,7 +103,7 @@ export function SpendingPanel() {
                     type="button"
                     aria-label={t('common.delete')}
                     onClick={() => remove.spend(e.id)}
-                    className="text-coffee-300 hover:text-rose-400"
+                    className="text-coffee-300 hover:text-rose-600"
                   >
                     ✕
                   </button>

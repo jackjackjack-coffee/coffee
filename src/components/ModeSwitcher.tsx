@@ -17,8 +17,8 @@ export function ModeSwitcher() {
       className={cn(
         'flex flex-1 items-center justify-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold transition-colors',
         mode === m
-          ? 'bg-white/15 text-white shadow-sm ring-1 ring-white/15'
-          : 'text-coffee-500 hover:text-coffee-800',
+          ? 'bg-white/15 text-white shadow-sm ring-1 ring-white/20'
+          : 'text-white/55 hover:text-white/85',
       )}
     >
       <span className="text-base">{emoji}</span>

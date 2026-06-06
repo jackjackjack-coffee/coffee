@@ -7,13 +7,11 @@
     -webkit-text-size-adjust: 100%;
   }
   body {
-    @apply text-coffee-50 antialiased;
-    color: #f4eefe;
+    @apply text-coffee-900 antialiased;
     font-feature-settings: 'tnum' 1;
     min-height: 100vh;
-    /* Twilight fallback; the bright sky, clouds & stars are painted by the
-       <Backdrop /> SVG layer rendered behind the app. */
-    background-color: #281f52;
+    /* Light fallback under the cloud <Backdrop /> SVG layer. */
+    background-color: #cdbfe6;
   }
   #root {
     position: relative;
@@ -26,15 +24,14 @@
 }
 
 @layer components {
-  /* Frosted-glass surface used by cards, stats, popovers, etc. A translucent
-     dark tint keeps light text readable over the bright cloud backdrop while
-     still letting the sky glow through. */
+  /* Frosted-glass surface used by cards, stats, popovers, etc. A bright cream
+     panel that lets the cloud sky glow through, with dark text on top. */
   .glass {
-    @apply border border-white/15 backdrop-blur-xl;
-    background-color: rgba(40, 30, 86, 0.46);
+    @apply border border-white/70 backdrop-blur-xl;
+    background-color: rgba(250, 247, 253, 0.72);
     box-shadow:
-      0 10px 34px -10px rgba(10, 6, 30, 0.55),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+      0 14px 40px -16px rgba(48, 34, 86, 0.4),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.85);
   }
   .btn {
     @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all disabled:cursor-not-allowed disabled:opacity-50;
@@ -48,36 +45,35 @@
     filter: brightness(1.12);
   }
   .btn-secondary {
-    @apply btn border border-white/15 text-coffee-50 backdrop-blur-md;
-    background-color: rgba(46, 35, 96, 0.55);
+    @apply btn border border-coffee-200 text-coffee-800 backdrop-blur-md;
+    background-color: rgba(255, 255, 255, 0.7);
   }
   .btn-secondary:hover {
-    background-color: rgba(60, 47, 120, 0.65);
+    background-color: rgba(255, 255, 255, 0.92);
   }
   .btn-ghost {
-    @apply btn text-coffee-100 hover:bg-white/10;
+    @apply btn text-coffee-700 hover:bg-coffee-100;
   }
   .card {
     @apply glass rounded-2xl p-4 sm:p-5;
   }
   .input {
-    @apply w-full rounded-lg border border-white/15 px-3 py-2 text-sm text-coffee-50 outline-none transition-colors placeholder:text-coffee-300 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/40;
-    background-color: rgba(18, 12, 44, 0.55);
+    @apply w-full rounded-lg border border-coffee-200 px-3 py-2 text-sm text-coffee-900 outline-none transition-colors placeholder:text-coffee-400 focus:border-violet-500 focus:ring-2 focus:ring-violet-400/40;
+    background-color: rgba(255, 255, 255, 0.7);
   }
   .label {
-    @apply mb-1 block text-xs font-medium text-coffee-200;
+    @apply mb-1 block text-xs font-medium text-coffee-600;
   }
   .chip {
     @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium;
   }
-  /* Big celestial hero number — gradient-clipped with a soft glow. */
+  /* Big hero number — violet gradient-clipped text on the light panel. */
   .hero-number {
     @apply font-bold tracking-tight tnum;
-    background-image: linear-gradient(135deg, #ffffff 0%, #c4b5fd 55%, #a78bfa 100%);
+    background-image: linear-gradient(135deg, #6d28d9 0%, #9333ea 55%, #c026d3 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    text-shadow: 0 0 28px rgba(167, 139, 250, 0.35);
   }
   /* Glowing pill for the active sidebar nav item. */
   .nav-item-active {
