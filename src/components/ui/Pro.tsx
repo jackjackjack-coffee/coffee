@@ -7,7 +7,7 @@ import { useAppStore } from '../../store/useAppStore';
 
 export function ProBadge() {
   return (
-    <span className="chip bg-amber-100 text-amber-700">PRO</span>
+    <span className="chip bg-gold/15 text-gold">PRO</span>
   );
 }
 
@@ -58,7 +58,7 @@ export function LockedFeature({
           {children}
         </div>
       )}
-      <div className="absolute inset-0 flex items-center justify-center bg-cream/70 p-6">
+      <div className="absolute inset-0 flex items-center justify-center bg-glassbg/80 p-6 backdrop-blur-md">
         <div className="max-w-sm text-center">
           <div className="mb-2 inline-block">
             <ProBadge />
@@ -85,7 +85,7 @@ export function LockedFeature({
 export function PaywallNote({ mode }: { mode: 'home' | 'cafe' }) {
   const t = useT();
   return (
-    <div className="rounded-xl bg-amber-50 p-3 text-sm text-amber-800">
+    <div className="rounded-xl bg-gold/10 p-3 text-sm text-gold">
       <p>{mode === 'home' ? t('pro.homeBlurb') : t('pro.cafeBlurb')}</p>
       <div className="mt-3">
         <BuyButtons which={mode === 'home' ? 'personal' : 'cafe'} />

@@ -16,7 +16,7 @@ Two audiences, two voices. Korean and English for each. Use freely on Gumroad / 
 3. **A year of coffee, in focus.** "This year you spent ₩___; brewing at home saved you ₩___." Track spending, watch the savings grow.
 
 **Listing description**
-> ☕ **Bean Counter — Home** turns your coffee hobby into clear numbers. Build your recipes (espresso, latte, pour‑over and more come ready with proper 1:15–1:18 dosing), log your gear, and instantly see your true cost per cup — consumables *plus* equipment wear. The Equipment ROI calculator answers the question every home barista asks: *"Will this machine actually pay for itself?"* — in cups, in months, on a chart. Track your monthly coffee spend, see your home‑vs‑café split, and watch how much brewing at home saves you over a year.
+> ☕ **Roasting Numbers — Home** turns your coffee hobby into clear numbers. Build your recipes (espresso, latte, pour‑over and more come ready with proper 1:15–1:18 dosing), log your gear, and instantly see your true cost per cup — consumables *plus* equipment wear. The Equipment ROI calculator answers the question every home barista asks: *"Will this machine actually pay for itself?"* — in cups, in months, on a chart. Track your monthly coffee spend, see your home‑vs‑café split, and watch how much brewing at home saves you over a year.
 >
 > No account. No subscription. Everything stays on your device. Works on your phone. Korean & English, ₩/$/€.
 >
@@ -35,7 +35,7 @@ Two audiences, two voices. Korean and English for each. Use freely on Gumroad / 
 3. **1년치 커피를 한눈에.** "올해 커피에 ₩___, 집에서 내려 ₩___ 절약." 지출을 기록하고 절약액이 쌓이는 걸 지켜보세요.
 
 **리스팅 설명**
-> ☕ **빈카운터 — 홈**은 커피 취미를 명확한 숫자로 바꿔 줍니다. 레시피를 만들고(에스프레소·라떼·푸어오버 등 1:15~1:18 도징 프리셋 기본 제공), 장비를 등록하면 소모품에 장비 마모까지 더한 *진짜* 잔당 원가가 바로 보입니다. 장비 본전 계산기는 모든 홈 바리스타의 질문에 답합니다 — *"이 머신, 진짜 본전 뽑을까?"* — 잔수로, 개월수로, 차트로. 월별 커피 지출과 집 vs 카페 비중을 추적하고, 1년간 집에서 내려 얼마나 아꼈는지 확인하세요.
+> ☕ **로스팅 넘버스 — 홈**은 커피 취미를 명확한 숫자로 바꿔 줍니다. 레시피를 만들고(에스프레소·라떼·푸어오버 등 1:15~1:18 도징 프리셋 기본 제공), 장비를 등록하면 소모품에 장비 마모까지 더한 *진짜* 잔당 원가가 바로 보입니다. 장비 본전 계산기는 모든 홈 바리스타의 질문에 답합니다 — *"이 머신, 진짜 본전 뽑을까?"* — 잔수로, 개월수로, 차트로. 월별 커피 지출과 집 vs 카페 비중을 추적하고, 1년간 집에서 내려 얼마나 아꼈는지 확인하세요.
 >
 > 계정 없음. 구독 없음. 모든 데이터는 내 기기에. 모바일 지원. 한국어·영어, ₩/$/€.
 >
@@ -58,7 +58,7 @@ Two audiences, two voices. Korean and English for each. Use freely on Gumroad / 
 3. **See your whole menu's health.** One dashboard ranks every drink by margin, highlights the losers, and a what‑if simulator shows how a bean price hike ripples across the menu.
 
 **Listing description**
-> 🏪 **Bean Counter — Café** is costing & pricing built for coffee shops, by the numbers. Enter wholesale ingredients once and the per‑unit cost is computed; build each drink to get full cost (ingredients + waste + packaging + labour + overhead). Set a target margin for an instant suggested price with charm rounding, or type your menu price to see the real margin and cost ratio — with automatic low‑margin flags.
+> 🏪 **Roasting Numbers — Café** is costing & pricing built for coffee shops, by the numbers. Enter wholesale ingredients once and the per‑unit cost is computed; build each drink to get full cost (ingredients + waste + packaging + labour + overhead). Set a target margin for an instant suggested price with charm rounding, or type your menu price to see the real margin and cost ratio — with automatic low‑margin flags.
 >
 > The **Menu P&L dashboard** ranks every drink worst‑margin‑first so you know exactly what to re‑price. The **what‑if simulator** answers "if beans go up 15%, what happens to my lattes?" instantly. Run multiple (seasonal) menus, log sales & expenses for a mini P&L, and export to CSV/PDF. Multi‑currency, Korean & English.
 >
@@ -77,7 +77,7 @@ Two audiences, two voices. Korean and English for each. Use freely on Gumroad / 
 3. **메뉴 전체의 건강 상태.** 한 대시보드가 모든 음료를 마진 낮은 순으로 정렬하고, 손해 메뉴를 강조합니다. What‑if 시뮬레이터로 원두값 인상이 메뉴에 미치는 파장을 즉시 확인.
 
 **리스팅 설명**
-> 🏪 **빈카운터 — 카페**는 카페를 위한 원가·가격책정 도구입니다. 도매 재료를 한 번 입력하면 단위원가가 자동 계산되고, 음료를 구성하면 완전원가(재료+폐기+포장+인건비+간접비)가 나옵니다. 목표 마진을 정하면 심리가 반올림된 추천가가, 판매가를 입력하면 실제 마진과 원가율이 — 저마진 자동 경고와 함께 — 바로 보입니다.
+> 🏪 **로스팅 넘버스 — 카페**는 카페를 위한 원가·가격책정 도구입니다. 도매 재료를 한 번 입력하면 단위원가가 자동 계산되고, 음료를 구성하면 완전원가(재료+폐기+포장+인건비+간접비)가 나옵니다. 목표 마진을 정하면 심리가 반올림된 추천가가, 판매가를 입력하면 실제 마진과 원가율이 — 저마진 자동 경고와 함께 — 바로 보입니다.
 >
 > **메뉴 손익 대시보드**는 모든 음료를 마진 낮은 순으로 정렬해 어디부터 가격을 손봐야 할지 알려줍니다. **What‑if 시뮬레이터**는 "원두값 15% 오르면 라떼는?"에 즉시 답합니다. 시즌 메뉴를 여러 개 운영하고, 매출·지출을 기록해 미니 손익을 보고, CSV/PDF로 내보내세요. 다중 통화, 한국어·영어.
 >

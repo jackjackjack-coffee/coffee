@@ -84,15 +84,15 @@ function MenuRow({
   const [name, setName] = useState(menu.name);
 
   return (
-    <Card className={cn('flex items-center justify-between gap-3 p-3', active && 'ring-2 ring-coffee-500')}>
+    <Card className={cn('flex items-center justify-between gap-3 p-3', active && 'ring-2 ring-violet-400')}>
       <button type="button" onClick={onSelect} className="flex flex-1 items-center gap-3 text-left">
         <span
           className={cn(
             'flex h-4 w-4 items-center justify-center rounded-full border',
-            active ? 'border-coffee-600' : 'border-coffee-300',
+            active ? 'border-violet-400' : 'border-coffee-300',
           )}
         >
-          {active && <span className="h-2 w-2 rounded-full bg-coffee-600" />}
+          {active && <span className="h-2 w-2 rounded-full bg-violet-400" />}
         </span>
         {editing ? (
           <TextField value={name} onChange={setName} />
@@ -118,7 +118,7 @@ function MenuRow({
           </button>
         )}
         {canDelete && (
-          <button type="button" aria-label={t('common.delete')} className="text-coffee-300 hover:text-red-600" onClick={onDelete}>
+          <button type="button" aria-label={t('common.delete')} className="text-coffee-300 hover:text-rose-600" onClick={onDelete}>
             ✕
           </button>
         )}

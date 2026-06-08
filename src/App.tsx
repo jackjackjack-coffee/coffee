@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ensureSeeded } from './data/db';
+import { ensureSeeded, relocalizePresets } from './data/db';
 import { useAppStore } from './store/useAppStore';
 import { useLicenseValidation } from './license/useLicense';
 import { AppShell } from './components/AppShell';
@@ -22,7 +22,9 @@ export default function App() {
 
   useEffect(() => {
     document.documentElement.lang = language;
-  }, [language]);
+    // Re-translate seeded presets to the active language (no-op for edited rows).
+    if (ready) relocalizePresets(language).catch((e) => console.error('relocalize failed', e));
+  }, [language, ready]);
 
   useLicenseValidation();
 

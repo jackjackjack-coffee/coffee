@@ -80,22 +80,17 @@ export function IngredientsManager({ mode }: { mode: Mode }) {
               <div className="mb-1 px-1 text-xs font-semibold uppercase tracking-wide text-coffee-400">
                 {t(catKey(cat))}
               </div>
-              <Card className="divide-y divide-coffee-50 p-0">
+              <Card className="divide-y divide-coffee-100 p-0">
                 {items.map((ing) => (
                   <button
                     key={ing.id}
                     type="button"
                     onClick={() => setEditing(ing)}
-                    className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left hover:bg-coffee-50"
+                    className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left hover:bg-coffee-100/60"
                   >
                     <div className="min-w-0">
                       <div className="flex items-center gap-2">
                         <span className="truncate font-medium text-coffee-900">{ing.name}</span>
-                        {ing.isPreset && (
-                          <span className="chip bg-coffee-100 text-coffee-500" title={t('flag.example')}>
-                            {t('common.preset')}
-                          </span>
-                        )}
                       </div>
                       <div className="text-xs text-coffee-500 tnum">
                         {fmt.num(ing.purchaseQty, 2)} {t(unitKey(ing.purchaseUnit))} · {fmt.money(ing.purchasePrice)}
@@ -232,7 +227,7 @@ function IngredientForm({
           value={supplier}
           onChange={setSupplier}
         />
-        <div className="flex items-center justify-between rounded-xl bg-coffee-50 px-4 py-3">
+        <div className="flex items-center justify-between rounded-xl bg-coffee-100/60 px-4 py-3">
           <span className="text-sm text-coffee-600">
             {t('ing.unitCost')}
             <Info text={t('ing.hint')} />

@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import {
+  Area,
+  AreaChart,
   CartesianGrid,
-  Line,
-  LineChart,
   ReferenceLine,
   ResponsiveContainer,
   Tooltip,
@@ -73,45 +73,53 @@ export function RoiPanel() {
       </Card>
 
       {result.neverBreaksEven ? (
-        <Card className="bg-amber-50 text-amber-800">{t('roi.never')}</Card>
+        <Card className="bg-gold/10 text-gold">{t('roi.never')}</Card>
       ) : (
         <>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-            <Stat label={t('roi.savePerCup')} value={fmt.money(result.perCupSaving)} accent="good" />
-            <Stat label={t('roi.breakevenCups')} value={fmt.num(Math.ceil(result.breakevenCups))} />
+            <Stat label={t('roi.savePerCup')} amount={result.perCupSaving} format={fmt.money} accent="good" />
+            <Stat label={t('roi.breakevenCups')} amount={Math.ceil(result.breakevenCups)} format={fmt.num} />
             <Stat
               label={t('roi.breakevenTime')}
               value={t('roi.months', { n: fmt.num(result.breakevenMonths, 1) })}
               sub={t('roi.days', { n: fmt.num(Math.ceil(result.breakevenDays)) })}
             />
-            <Stat label={t('roi.annualAfter')} value={fmt.money(result.annualSavingsAfterBreakeven)} accent="good" />
+            <Stat label={t('roi.annualAfter')} amount={result.annualSavingsAfterBreakeven} format={fmt.money} accent="good" />
           </div>
 
           <Card>
             <div className="mb-2 text-sm font-medium text-coffee-700">{t('roi.chart')}</div>
             <div className="h-60 w-full">
               <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={curve} margin={{ top: 8, right: 8, left: 8, bottom: 4 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#eaddcf" />
+                <AreaChart data={curve} margin={{ top: 8, right: 8, left: 8, bottom: 4 }}>
+                  <defs>
+                    <linearGradient id="roiFill" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#a78bfa" stopOpacity={0.55} />
+                      <stop offset="100%" stopColor="#7c3aed" stopOpacity={0.05} />
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e4ddf2" />
                   <XAxis
                     dataKey="month"
-                    tick={{ fontSize: 11 }}
+                    tick={{ fontSize: 11, fill: '#736691' }}
                     tickFormatter={(m) => `${m}m`}
-                    stroke="#a98a6d"
+                    stroke="#cfc4e4"
                   />
                   <YAxis
-                    tick={{ fontSize: 11 }}
+                    tick={{ fontSize: 11, fill: '#736691' }}
                     width={48}
                     tickFormatter={(v) => fmt.num(v / 1000) + 'k'}
-                    stroke="#a98a6d"
+                    stroke="#cfc4e4"
                   />
                   <Tooltip
+                    contentStyle={{ background: '#ffffff', border: '1px solid #ddd4ec', borderRadius: 12, color: '#241d33' }}
+                    labelStyle={{ color: '#736691' }}
                     formatter={(v: number) => [fmt.money(v), t('roi.netSavings')]}
                     labelFormatter={(m) => t('roi.months', { n: m as number })}
                   />
-                  <ReferenceLine y={0} stroke="#965938" strokeDasharray="4 4" />
-                  <Line type="monotone" dataKey="net" stroke="#7c4730" strokeWidth={2.5} dot={false} />
-                </LineChart>
+                  <ReferenceLine y={0} stroke="#c3b7db" strokeDasharray="4 4" />
+                  <Area type="monotone" dataKey="net" stroke="#7c3aed" strokeWidth={2.5} fill="url(#roiFill)" dot={false} />
+                </AreaChart>
               </ResponsiveContainer>
             </div>
           </Card>

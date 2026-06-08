@@ -74,12 +74,13 @@ export function CafeDashboard() {
       ) : (
         <>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-            <Stat label={t('cafe.dash.avgMargin')} value={fmt.pct(avgMargin)} />
-            <Stat label={t('cafe.dash.avgCost')} value={fmt.money(avgCogs)} />
-            <Stat label={t('common.count', { n: rows.length })} value={fmt.num(rows.length)} />
+            <Stat label={t('cafe.dash.avgMargin')} amount={avgMargin} format={fmt.pct} />
+            <Stat label={t('cafe.dash.avgCost')} amount={avgCogs} format={fmt.money} />
+            <Stat label={t('common.count', { n: rows.length })} amount={rows.length} format={fmt.num} />
             <Stat
               label={t('drink.lowMargin')}
-              value={fmt.num(flagged)}
+              amount={flagged}
+              format={fmt.num}
               accent={flagged > 0 ? 'bad' : 'good'}
               sub={flagged > 0 ? t('cafe.dash.flagged', { n: flagged }) : undefined}
             />
@@ -101,8 +102,8 @@ export function CafeDashboard() {
               {rows.map((r) => (
                 <div
                   key={r.drink.id}
-                  className={`grid grid-cols-12 items-center gap-2 border-b border-coffee-50 px-3 py-2 last:border-0 ${
-                    r.e.isLowMargin ? 'bg-red-50' : ''
+                  className={`grid grid-cols-12 items-center gap-2 border-b border-coffee-100 px-3 py-2 last:border-0 ${
+                    r.e.isLowMargin ? 'bg-rose-500/10' : ''
                   }`}
                 >
                   <div className="col-span-4 min-w-0 truncate text-sm font-medium text-coffee-900">{r.drink.name}</div>
@@ -111,7 +112,7 @@ export function CafeDashboard() {
                   <div className="col-span-2 text-right text-xs text-coffee-500 tnum">{fmt.pct(r.e.costRatio)}</div>
                   <div
                     className={`col-span-2 text-right text-sm font-bold tnum ${
-                      r.e.isLowMargin ? 'text-red-600' : 'text-emerald-700'
+                      r.e.isLowMargin ? 'text-rose-600' : 'text-mint'
                     }`}
                   >
                     {fmt.pct(r.e.margin)}

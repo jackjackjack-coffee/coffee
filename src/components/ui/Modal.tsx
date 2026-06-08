@@ -29,12 +29,12 @@ export function Modal({ open, onClose, title, children, footer, className }: Pro
 
   return createPortal(
     <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center">
-      <div className="absolute inset-0 bg-coffee-950/40 backdrop-blur-sm" onClick={onClose} />
+      <div className="absolute inset-0 bg-night/70 backdrop-blur-sm" onClick={onClose} />
       <div
         role="dialog"
         aria-modal="true"
         className={cn(
-          'relative z-10 max-h-[92vh] w-full overflow-y-auto rounded-t-2xl bg-white p-4 shadow-xl sm:max-w-lg sm:rounded-2xl sm:p-6',
+          'relative z-10 max-h-[92vh] w-full overflow-y-auto rounded-t-2xl border border-white/70 bg-glassbg/95 p-4 shadow-xl backdrop-blur-xl sm:max-w-lg sm:rounded-2xl sm:p-6',
           className,
         )}
       >

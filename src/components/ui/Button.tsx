@@ -11,7 +11,7 @@ const VARIANT: Record<Variant, string> = {
   primary: 'btn-primary',
   secondary: 'btn-secondary',
   ghost: 'btn-ghost',
-  danger: 'btn bg-red-600 text-white hover:bg-red-700',
+  danger: 'btn bg-rose-600 text-white hover:bg-rose-700',
 };
 
 export function Button({ variant = 'primary', className, type = 'button', ...rest }: Props) {

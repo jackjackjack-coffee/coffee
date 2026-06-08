@@ -16,7 +16,7 @@ export function Info({ text }: { text: string }) {
         i
       </button>
       {open && (
-        <span className="absolute left-1/2 top-6 z-20 w-52 -translate-x-1/2 rounded-lg bg-coffee-900 px-3 py-2 text-xs font-normal leading-relaxed text-white shadow-lg">
+        <span className="absolute left-1/2 top-6 z-20 w-52 -translate-x-1/2 rounded-lg border border-coffee-200 bg-white px-3 py-2 text-xs font-normal leading-relaxed text-coffee-800 shadow-lg">
           {text}
         </span>
       )}

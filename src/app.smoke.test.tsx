@@ -67,8 +67,8 @@ describe('app integration', () => {
   });
 
   it('translates both languages', () => {
-    expect(translate('en', 'app.name')).toBe('Bean Counter');
-    expect(translate('ko', 'app.name')).toBe('빈카운터');
+    expect(translate('en', 'app.name')).toBe('Roasting Numbers');
+    expect(translate('ko', 'app.name')).toBe('로스팅 넘버스');
     expect(translate('en', 'pro.limitBlurb', { n: 5 })).toContain('5');
   });
 });
