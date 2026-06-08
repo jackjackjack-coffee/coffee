@@ -21,6 +21,11 @@ const SPARKLES = [
   { x: 860, y: 700, s: 8 },
   { x: 1340, y: 760, s: 6 },
   { x: 620, y: 880, s: 7 },
+  { x: 120, y: 220, s: 7 },
+  { x: 700, y: 360, s: 5 },
+  { x: 1080, y: 660, s: 6 },
+  { x: 430, y: 700, s: 8 },
+  { x: 1260, y: 470, s: 5 },
 ];
 
 function Puff({ x, y, scale = 1, opacity = 0.9, drift = 'rn-drift' }: { x: number; y: number; scale?: number; opacity?: number; drift?: string }) {
@@ -47,10 +52,22 @@ function Bean({ x, y, rot = 0, scale = 1, opacity = 0.85 }: { x: number; y: numb
   );
 }
 
-function CoffeeCup() {
+function CoffeeCup({
+  x = 1070,
+  y = 768,
+  scale = 1,
+  opacity = 0.92,
+  bob = 'rn-bob',
+}: {
+  x?: number;
+  y?: number;
+  scale?: number;
+  opacity?: number;
+  bob?: string;
+}) {
   return (
-    <g transform="translate(1070 768)" opacity="0.92">
-      <g className="rn-bob">
+    <g transform={`translate(${x} ${y}) scale(${scale})`} opacity={opacity}>
+      <g className={bob}>
         <circle r="150" fill="url(#rn-cupglow)" />
         <Puff x={6} y={70} scale={0.9} opacity={0.95} drift="rn-drift2" />
         {/* steam */}
@@ -107,6 +124,22 @@ export function Backdrop() {
             <stop offset="55%" stopColor="#f3e6ff" stopOpacity="0.4" />
             <stop offset="100%" stopColor="#f3e6ff" stopOpacity="0" />
           </radialGradient>
+          <linearGradient id="rn-aurora" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#a78bfa" stopOpacity="0" />
+            <stop offset="45%" stopColor="#c4b5fd" stopOpacity="0.55" />
+            <stop offset="70%" stopColor="#f9a8d4" stopOpacity="0.5" />
+            <stop offset="100%" stopColor="#fbcfe8" stopOpacity="0" />
+          </linearGradient>
+          <radialGradient id="rn-planet" cx="38%" cy="35%">
+            <stop offset="0%" stopColor="#fcd9b6" />
+            <stop offset="55%" stopColor="#d8a7d8" />
+            <stop offset="100%" stopColor="#8d6fc4" />
+          </radialGradient>
+          <linearGradient id="rn-ring" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#e9d5ff" stopOpacity="0" />
+            <stop offset="50%" stopColor="#f5e6ff" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#e9d5ff" stopOpacity="0" />
+          </linearGradient>
           <filter id="rn-soft" x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation="60" />
           </filter>
@@ -126,8 +159,22 @@ export function Backdrop() {
           <ellipse cx="1180" cy="640" rx="360" ry="320" fill="url(#rn-violet)" />
         </g>
         <rect width="1440" height="1024" fill="#fff" filter="url(#rn-haze)" opacity="0.35" />
-        <g transform="translate(1258 168)">
-          <circle r="104" fill="url(#rn-moon)" />
+
+        {/* aurora ribbon */}
+        <g filter="url(#rn-soft)" opacity="0.55">
+          <path d="M -100,360 C 360,220 760,470 1120,300 C 1340,205 1480,300 1560,250 L 1560,430 C 1300,470 1040,360 760,470 C 420,600 120,470 -100,540 Z" fill="url(#rn-aurora)" />
+        </g>
+
+        {/* ringed planet */}
+        <g transform="translate(995 150) rotate(-18)">
+          <ellipse rx="118" ry="24" fill="none" stroke="url(#rn-ring)" strokeWidth="8" opacity="0.75" />
+          <circle r="46" fill="url(#rn-planet)" />
+          <path d="M -118,6 A 118 24 0 0 0 118,6" fill="none" stroke="url(#rn-ring)" strokeWidth="8" opacity="0.85" />
+        </g>
+
+        {/* crescent moon */}
+        <g transform="translate(1280 200)">
+          <circle r="120" fill="url(#rn-moon)" />
           <path d="M -6,-50 a50,50 0 1,0 0,100 a62,62 0 0,1 0,-100 z" fill="#fffaff" opacity="0.95" />
         </g>
       </svg>
@@ -173,15 +220,26 @@ export function Backdrop() {
           </filter>
         </defs>
 
+        {/* shooting star */}
+        <g className="rn-twinkle" style={{ animationDuration: '6s' }} opacity="0.85">
+          <path d="M 560,120 L 760,70" stroke="url(#rn-ring)" strokeWidth="3" strokeLinecap="round" />
+          <circle cx="760" cy="70" r="4" fill="#ffffff" />
+        </g>
+
         {/* floating puffy clouds */}
         <Puff x={300} y={360} scale={1.15} opacity={0.92} drift="rn-drift" />
         <Puff x={560} y={170} scale={0.7} opacity={0.78} drift="rn-drift2" />
         <Puff x={1130} y={300} scale={0.95} opacity={0.85} drift="rn-drift2" />
         <Puff x={150} y={780} scale={0.95} opacity={0.8} drift="rn-drift" />
-        <Puff x={760} y={840} scale={1.45} opacity={0.95} drift="rn-drift" />
-        <Puff x={1290} y={730} scale={1.0} opacity={0.85} drift="rn-drift2" />
+        <Puff x={760} y={840} scale={1.5} opacity={0.95} drift="rn-drift" />
+        <Puff x={1290} y={730} scale={1.05} opacity={0.85} drift="rn-drift2" />
+        <Puff x={70} y={520} scale={0.85} opacity={0.7} drift="rn-drift" />
+        <Puff x={980} y={560} scale={1.25} opacity={0.6} drift="rn-drift2" />
 
-        {/* coffee cup on a cloud */}
+        {/* distant floating cup */}
+        <CoffeeCup x={188} y={612} scale={0.5} opacity={0.62} bob="rn-bob2" />
+
+        {/* main coffee cup on a cloud */}
         <CoffeeCup />
 
         {/* floating coffee beans */}
@@ -193,6 +251,8 @@ export function Backdrop() {
         <Bean x={360} y={470} rot={-15} scale={0.9} opacity={0.7} />
         <Bean x={1330} y={430} rot={35} scale={0.85} opacity={0.7} />
         <Bean x={470} y={900} rot={10} scale={0.95} opacity={0.7} />
+        <Bean x={250} y={300} rot={48} scale={0.8} opacity={0.6} />
+        <Bean x={1100} y={470} rot={-32} scale={0.78} opacity={0.6} />
 
         {/* twinkling sparkles */}
         <g fill="#ffffff">

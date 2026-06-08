@@ -91,11 +91,6 @@ export function IngredientsManager({ mode }: { mode: Mode }) {
                     <div className="min-w-0">
                       <div className="flex items-center gap-2">
                         <span className="truncate font-medium text-coffee-900">{ing.name}</span>
-                        {ing.isPreset && (
-                          <span className="chip bg-coffee-100/60 text-coffee-500" title={t('flag.example')}>
-                            {t('common.preset')}
-                          </span>
-                        )}
                       </div>
                       <div className="text-xs text-coffee-500 tnum">
                         {fmt.num(ing.purchaseQty, 2)} {t(unitKey(ing.purchaseUnit))} · {fmt.money(ing.purchasePrice)}
