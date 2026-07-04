@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { useT } from '../../i18n';
 import { useTier } from '../../lib/hooks';
 import { hasFeature, type Feature } from '../../license/gate';
-import { LS_CHECKOUT_CAFE, LS_CHECKOUT_PERSONAL } from '../../license/lemonsqueezy';
+import { CHECKOUT_CONFIGURED, LS_CHECKOUT_CAFE, LS_CHECKOUT_PERSONAL } from '../../license/lemonsqueezy';
 import { useAppStore } from '../../store/useAppStore';
 
 export function ProBadge() {
@@ -13,6 +13,11 @@ export function ProBadge() {
 
 function BuyButtons({ which }: { which: 'personal' | 'cafe' | 'both' }) {
   const t = useT();
+  // Until real checkout links are configured, don't render buttons that lead
+  // to a placeholder domain — point users at the license field instead.
+  if (!CHECKOUT_CONFIGURED) {
+    return <p className="text-xs text-coffee-500">{t('pro.comingSoon')}</p>;
+  }
   return (
     <div className="flex flex-wrap gap-2">
       {(which === 'personal' || which === 'both') && (

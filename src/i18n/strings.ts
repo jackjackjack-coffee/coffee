@@ -249,6 +249,7 @@ const en = {
   'pro.limitReached': 'Free plan limit reached',
   'pro.limitBlurb': 'The free plan saves up to {n} drinks per mode. Upgrade for unlimited.',
   'pro.preview': 'Preview',
+  'pro.comingSoon': 'Purchases open soon. Already have a license key? Enter it in Settings.',
 
   // settings / license
   'set.title': 'Settings',
@@ -515,6 +516,7 @@ const ko: Record<TKey, string> = {
   'pro.limitReached': '무료 플랜 한도 도달',
   'pro.limitBlurb': '무료 플랜은 모드별 {n}개까지 저장됩니다. 업그레이드하면 무제한입니다.',
   'pro.preview': '미리보기',
+  'pro.comingSoon': '구매는 곧 열려요. 이미 라이선스 키가 있다면 설정에서 입력해 주세요.',
 
   'set.title': '설정',
   'set.language': '언어',
