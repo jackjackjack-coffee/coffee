@@ -46,7 +46,7 @@ export function PricingPanel() {
           {drinks.map((d) => {
             const e = cafeDrinkEconomics(d, menu, ingById);
             return (
-              <div key={d.id} className="grid grid-cols-12 items-center gap-2 border-b border-coffee-50 px-3 py-2 last:border-0">
+              <div key={d.id} className="grid grid-cols-12 items-center gap-2 border-b border-coffee-100 px-3 py-2 last:border-0">
                 <div className="col-span-4 min-w-0">
                   <div className="truncate text-sm font-medium text-coffee-900">{d.name}</div>
                   <div className="text-[10px] text-coffee-400">
@@ -65,7 +65,7 @@ export function PricingPanel() {
                 </div>
                 <div
                   className={`col-span-2 text-right text-sm font-bold tnum ${
-                    e.isLowMargin ? 'text-red-600' : 'text-emerald-700'
+                    e.isLowMargin ? 'text-rose-600' : 'text-mint'
                   }`}
                 >
                   {fmt.pct(e.margin)}

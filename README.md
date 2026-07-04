@@ -1,4 +1,4 @@
-# ☕ Bean Counter — Coffee Accountant
+# ☕ Roasting Numbers — Coffee Accountant
 
 **Coffee, seen through an accountant's eyes.** One app, two modes:
 

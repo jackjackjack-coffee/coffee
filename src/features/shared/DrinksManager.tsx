@@ -63,7 +63,7 @@ export function DrinksManager({ mode, activeMenu }: { mode: Mode; activeMenu?: M
           {drinks.map((d) => (
             <Card
               key={d.id}
-              className="cursor-pointer p-0 hover:bg-coffee-50"
+              className="cursor-pointer p-0 hover:bg-coffee-100/60"
               onClick={() => setEditing(d)}
             >
               <div className="flex items-center justify-between gap-3 p-4">
@@ -138,7 +138,7 @@ function CafeSummary({ drink, menu, ingById }: { drink: Drink; menu: Menu; ingBy
       </div>
       <div>
         <div className="text-[10px] uppercase text-coffee-400">{t('drink.margin')}</div>
-        <div className={`font-bold tnum ${e.isLowMargin ? 'text-red-600' : 'text-emerald-700'}`}>
+        <div className={`font-bold tnum ${e.isLowMargin ? 'text-rose-600' : 'text-mint'}`}>
           {fmt.pct(e.margin)}
         </div>
       </div>
@@ -266,7 +266,7 @@ function DrinkEditor({
                     <button
                       type="button"
                       aria-label={t('common.delete')}
-                      className="px-2 text-coffee-400 hover:text-red-600"
+                      className="px-2 text-coffee-400 hover:text-rose-600"
                       onClick={() => removeLine(idx)}
                     >
                       ✕
@@ -311,7 +311,7 @@ function DrinkEditor({
           </div>
         )}
 
-        <div className="flex items-center justify-between rounded-xl bg-coffee-50 px-4 py-3">
+        <div className="flex items-center justify-between rounded-xl bg-coffee-100/60 px-4 py-3">
           <span className="text-sm font-medium text-coffee-600">
             {mode === 'home' ? t('drink.costPerCup') : t('drink.cogs')}
           </span>

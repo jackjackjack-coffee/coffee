@@ -13,7 +13,7 @@ import type {
   SpendEntry,
   Language,
 } from './types';
-import { buildSeed } from './presets';
+import { buildSeed, MENU_MAIN_NAME, PRESET_DRINKS, PRESET_INGREDIENTS } from './presets';
 
 export class CoffeeDB extends Dexie {
   ingredients!: Table<Ingredient, string>;
@@ -92,6 +92,35 @@ export async function resetToSeed(language: Language): Promise<void> {
       await db.meta.put({ key: SEED_FLAG, value: true });
     },
   );
+}
+
+/**
+ * Re-translate seeded preset names/notes to the active language. Only touches
+ * preset rows whose current value still matches one of the known localized
+ * presets — so anything the user has renamed/edited is left untouched.
+ */
+export async function relocalizePresets(language: Language): Promise<void> {
+  await db.transaction('rw', [db.ingredients, db.drinks, db.menus], async () => {
+    for (const p of PRESET_INGREDIENTS) {
+      const rec = await db.ingredients.get(p.id);
+      if (!rec?.isPreset) continue;
+      const patch: Partial<Ingredient> = {};
+      if (rec.name === p.name.ko || rec.name === p.name.en) patch.name = p.name[language];
+      if (p.note && (rec.note === p.note.ko || rec.note === p.note.en)) patch.note = p.note[language];
+      if (Object.keys(patch).length > 0) await db.ingredients.update(p.id, patch);
+    }
+    for (const p of PRESET_DRINKS) {
+      const rec = await db.drinks.get(p.id);
+      if (!rec?.isPreset) continue;
+      if (rec.name === p.name.ko || rec.name === p.name.en) {
+        await db.drinks.update(p.id, { name: p.name[language] });
+      }
+    }
+    const menu = await db.menus.get('pre-menu-main');
+    if (menu && (menu.name === MENU_MAIN_NAME.ko || menu.name === MENU_MAIN_NAME.en)) {
+      await db.menus.update('pre-menu-main', { name: MENU_MAIN_NAME[language] });
+    }
+  });
 }
 
 export async function getHomeSettings(): Promise<HomeSettings> {

@@ -83,17 +83,17 @@ export function WhatIfPanel() {
             const after = cafeDrinkEconomics(d, menu, simById);
             const delta = after.margin - before.margin;
             return (
-              <div key={d.id} className="grid grid-cols-12 items-center gap-2 border-b border-coffee-50 px-3 py-2 last:border-0">
+              <div key={d.id} className="grid grid-cols-12 items-center gap-2 border-b border-coffee-100 px-3 py-2 last:border-0">
                 <div className="col-span-4 min-w-0 truncate text-sm font-medium text-coffee-900">{d.name}</div>
                 <div className="col-span-3 text-right text-sm text-coffee-500 tnum">
                   {fmt.pct(before.margin)}
                   <div className="text-[10px] text-coffee-400">{fmt.money(before.cogs)}</div>
                 </div>
-                <div className={`col-span-3 text-right text-sm font-semibold tnum ${after.isLowMargin ? 'text-red-600' : 'text-coffee-900'}`}>
+                <div className={`col-span-3 text-right text-sm font-semibold tnum ${after.isLowMargin ? 'text-rose-600' : 'text-coffee-900'}`}>
                   {fmt.pct(after.margin)}
                   <div className="text-[10px] text-coffee-400">{fmt.money(after.cogs)}</div>
                 </div>
-                <div className={`col-span-2 text-right text-sm font-bold tnum ${delta < 0 ? 'text-red-600' : 'text-emerald-700'}`}>
+                <div className={`col-span-2 text-right text-sm font-bold tnum ${delta < 0 ? 'text-rose-600' : 'text-mint'}`}>
                   {delta >= 0 ? '+' : ''}
                   {fmt.pct(delta, 1)}
                 </div>

@@ -118,14 +118,14 @@ function LicenseCard() {
     <Card className="space-y-3">
       <div className="flex items-center justify-between">
         <span className="text-sm font-semibold text-coffee-800">{t('set.license')}</span>
-        <span className={`chip ${isActive ? 'bg-emerald-100 text-emerald-700' : 'bg-coffee-100 text-coffee-600'}`}>
+        <span className={`chip ${isActive ? 'bg-mint/15 text-mint' : 'bg-coffee-100/60 text-coffee-600'}`}>
           {t(TIER_KEY[license.tier])}
         </span>
       </div>
 
       {isActive ? (
         <div className="space-y-2">
-          <p className="text-sm text-emerald-700">✓ {t('set.licenseActive')}</p>
+          <p className="text-sm text-mint">✓ {t('set.licenseActive')}</p>
           {license.productName && <p className="text-xs text-coffee-500">{license.productName}</p>}
           {license.lastValidated && (
             <p className="text-xs text-coffee-400">
@@ -139,7 +139,7 @@ function LicenseCard() {
       ) : (
         <div className="space-y-2">
           <TextField label={t('set.enterKey')} value={key} onChange={setKey} placeholder="XXXXXXXX-XXXX-XXXX" />
-          {error && <p className="text-xs text-red-600">{error}</p>}
+          {error && <p className="text-xs text-rose-600">{error}</p>}
           {ALLOW_DEMO_KEYS && (
             <p className="text-[11px] text-coffee-400">demo: DEMO-PERSONAL · DEMO-CAFE</p>
           )}

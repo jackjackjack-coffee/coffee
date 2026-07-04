@@ -27,6 +27,9 @@ export const DEFAULT_CAFE_CUP_PRICE = 4500;
 type Loc = Record<Language, string>;
 const L = (ko: string, en: string): Loc => ({ ko, en });
 
+/** Localized name of the seeded default menu. */
+export const MENU_MAIN_NAME: Loc = L('기본 메뉴', 'Main Menu');
+
 interface PresetIngredient {
   id: string;
   mode: 'home' | 'cafe';
@@ -38,7 +41,7 @@ interface PresetIngredient {
   note?: Loc;
 }
 
-const PRESET_INGREDIENTS: PresetIngredient[] = [
+export const PRESET_INGREDIENTS: PresetIngredient[] = [
   // ── Home library (retail pack sizes) ──────────────────────────────
   { id: 'pre-h-bean', mode: 'home', name: L('원두 (스페셜티)', 'Beans (specialty)'), category: 'bean', purchaseQty: 200, purchaseUnit: 'g', purchasePrice: 12000, note: L('200g 봉지 예시가', 'example: 200g bag') },
   { id: 'pre-h-milk', mode: 'home', name: L('우유', 'Milk'), category: 'milk', purchaseQty: 1, purchaseUnit: 'l', purchasePrice: 2800 },
@@ -69,7 +72,7 @@ interface PresetDrink {
 
 const W = DEFAULT_WASTE_PCT;
 
-const PRESET_DRINKS: PresetDrink[] = [
+export const PRESET_DRINKS: PresetDrink[] = [
   // ── Home recipes (SCA 1:15–1:18 dosing, no to-go packaging) ───────
   { id: 'pre-h-espresso', mode: 'home', name: L('에스프레소', 'Espresso'), items: [{ ingredientId: 'pre-h-bean', amount: 18, unit: 'g', wastePct: W }] },
   { id: 'pre-h-americano', mode: 'home', name: L('아메리카노', 'Americano'), items: [{ ingredientId: 'pre-h-bean', amount: 18, unit: 'g', wastePct: W }] },
@@ -128,7 +131,7 @@ export function buildSeed(language: Language, now = Date.now()): SeedData {
 
   const menu: Menu = {
     id: 'pre-menu-main',
-    name: language === 'ko' ? '기본 메뉴' : 'Main Menu',
+    name: MENU_MAIN_NAME[language],
     drinkIds: cafeDrinkIds,
     pricing: {
       targetMargin: DEFAULT_TARGET_MARGIN,

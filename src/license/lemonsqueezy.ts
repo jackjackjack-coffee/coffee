@@ -20,9 +20,10 @@ export const LS_CHECKOUT_CAFE = 'https://YOUR_STORE.lemonsqueezy.com/buy/CAFE';
 
 /**
  * Dev/offline shortcut so the app is testable before the store is wired up.
- * Keys "DEMO-PERSONAL" / "DEMO-CAFE" unlock locally. Set to false for production.
+ * Keys "DEMO-PERSONAL" / "DEMO-CAFE" unlock locally. Dev builds only —
+ * shipping this true would be a free-Pro backdoor in production.
  */
-export const ALLOW_DEMO_KEYS = true;
+export const ALLOW_DEMO_KEYS = import.meta.env.DEV;
 // ───────────────────────────────────────────────────────────────────────────
 
 const API_BASE = 'https://api.lemonsqueezy.com/v1/licenses';
@@ -56,6 +57,10 @@ interface LsResponse {
 }
 
 const STORE_CONFIGURED = LS_STORE_ID !== '';
+
+/** True once real checkout links are configured (used to hide dead buy buttons). */
+export const CHECKOUT_CONFIGURED =
+  !LS_CHECKOUT_PERSONAL.includes('YOUR_STORE') && !LS_CHECKOUT_CAFE.includes('YOUR_STORE');
 
 function tierFromProduct(productId: LsMeta['product_id']): LicenseTier | null {
   const pid = productId === undefined || productId === null ? '' : String(productId);

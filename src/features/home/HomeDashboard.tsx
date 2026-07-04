@@ -8,6 +8,7 @@ import { useFormat } from '../../lib/hooks';
 import { useT } from '../../i18n';
 import { Card, SectionTitle } from '../../components/ui/Card';
 import { Stat } from '../../components/ui/Stat';
+import { CountUp } from '../../components/ui/CountUp';
 import { HomeSettingsCard, useHomeSettings } from './HomeSettingsCard';
 
 const DAYS_PER_YEAR = 365;
@@ -44,21 +45,21 @@ export function HomeDashboard() {
     <div className="space-y-4">
       <SectionTitle title={t('home.dash.title')} />
 
-      <Card className="bg-gradient-to-br from-coffee-700 to-coffee-900 text-white">
-        <p className="text-sm leading-relaxed text-coffee-100">
+      <Card className="bg-gradient-to-br from-violet-300/30 to-fuchsia-200/25">
+        <p className="text-sm leading-relaxed text-coffee-600">
           {yearSpend > 0
             ? t('home.dash.hook', { spent: fmt.money(yearSpend), saved: fmt.money(annualSaving) })
             : t('home.dash.projalc', { cups: fmt.num(settings.cupsPerDay), amount: fmt.money(cafeAnnual) })}
         </p>
-        <div className="mt-3 text-3xl font-bold tnum">{fmt.money(annualSaving)}</div>
-        <div className="text-xs text-coffee-200">{t('home.dash.savedHome')} · {t('common.perYear')}</div>
+        <CountUp value={annualSaving} format={fmt.money} className="hero-number mt-3 block text-4xl" />
+        <div className="text-xs text-coffee-600">{t('home.dash.savedHome')} · {t('common.perYear')}</div>
       </Card>
 
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-        <Stat label={t('home.dash.perCupHome')} value={fmt.money(avgHomeCup)} />
-        <Stat label={t('home.dash.perCupCafe')} value={fmt.money(settings.avgCafeCupPrice)} />
-        <Stat label={t('roi.savePerCup')} value={fmt.money(perCupSaving)} accent={perCupSaving > 0 ? 'good' : 'warn'} />
-        <Stat label={t('home.dash.yearSpend')} value={fmt.money(yearSpend)} sub={yearSpend === 0 ? t('home.dash.noData') : undefined} />
+        <Stat label={t('home.dash.perCupHome')} amount={avgHomeCup} format={fmt.money} />
+        <Stat label={t('home.dash.perCupCafe')} amount={settings.avgCafeCupPrice} format={fmt.money} />
+        <Stat label={t('roi.savePerCup')} amount={perCupSaving} format={fmt.money} accent={perCupSaving > 0 ? 'good' : 'warn'} />
+        <Stat label={t('home.dash.yearSpend')} amount={yearSpend} format={fmt.money} sub={yearSpend === 0 ? t('home.dash.noData') : undefined} />
       </div>
 
       {yearSpend > 0 && (
@@ -69,9 +70,9 @@ export function HomeDashboard() {
               {t('mode.home')} {homePct}% · {t('mode.cafe')} {100 - homePct}%
             </span>
           </div>
-          <div className="flex h-3 overflow-hidden rounded-full bg-coffee-100">
-            <div className="bg-coffee-600" style={{ width: `${homePct}%` }} />
-            <div className="bg-amber-400" style={{ width: `${100 - homePct}%` }} />
+          <div className="flex h-3 overflow-hidden rounded-full bg-coffee-100/60">
+            <div className="bg-violet-500" style={{ width: `${homePct}%` }} />
+            <div className="bg-gold" style={{ width: `${100 - homePct}%` }} />
           </div>
         </Card>
       )}

@@ -7,8 +7,15 @@
     -webkit-text-size-adjust: 100%;
   }
   body {
-    @apply bg-cream text-coffee-950 antialiased;
+    @apply text-coffee-900 antialiased;
     font-feature-settings: 'tnum' 1;
+    min-height: 100vh;
+    /* Light fallback under the cloud <Backdrop /> SVG layer. */
+    background-color: #cdbfe6;
+  }
+  #root {
+    position: relative;
+    z-index: 0;
   }
   /* tabular numbers for money columns */
   .tnum {
@@ -17,28 +24,143 @@
 }
 
 @layer components {
+  /* Frosted-glass surface used by cards, stats, popovers, etc. Clear, see-through
+     glass: a light translucent fill + heavy blur so the cloud sky shows through
+     while dark text on top stays crisp. */
+  .glass {
+    @apply border border-white/55 backdrop-blur-2xl;
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow:
+      0 18px 50px -20px rgba(38, 26, 78, 0.5),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.95),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+  }
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all disabled:cursor-not-allowed disabled:opacity-50;
   }
   .btn-primary {
-    @apply btn bg-coffee-700 text-white hover:bg-coffee-800;
+    @apply btn text-white;
+    background-image: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+    box-shadow: 0 4px 16px -4px rgba(124, 58, 237, 0.6);
+  }
+  .btn-primary:hover {
+    filter: brightness(1.12);
   }
   .btn-secondary {
-    @apply btn border border-coffee-200 bg-white text-coffee-800 hover:bg-coffee-50;
+    @apply btn border border-coffee-200 text-coffee-800 backdrop-blur-md;
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+  .btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.92);
   }
   .btn-ghost {
     @apply btn text-coffee-700 hover:bg-coffee-100;
   }
   .card {
-    @apply rounded-2xl border border-coffee-100 bg-white p-4 shadow-sm sm:p-5;
+    @apply glass rounded-2xl p-4 sm:p-5;
   }
   .input {
-    @apply w-full rounded-lg border border-coffee-200 bg-white px-3 py-2 text-sm outline-none focus:border-coffee-500 focus:ring-2 focus:ring-coffee-200;
+    @apply w-full rounded-lg border border-coffee-200 px-3 py-2 text-sm text-coffee-900 outline-none transition-colors placeholder:text-coffee-400 focus:border-violet-500 focus:ring-2 focus:ring-violet-400/40;
+    background-color: rgba(255, 255, 255, 0.7);
   }
   .label {
-    @apply mb-1 block text-xs font-medium text-coffee-700;
+    @apply mb-1 block text-xs font-medium text-coffee-600;
   }
   .chip {
     @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium;
+  }
+  /* Big hero number — violet gradient-clipped text on the light panel. */
+  .hero-number {
+    @apply font-bold tracking-tight tnum;
+    background-image: linear-gradient(135deg, #6d28d9 0%, #9333ea 55%, #c026d3 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  /* Glowing pill for the active sidebar nav item. */
+  .nav-item-active {
+    @apply text-white;
+    background-image: linear-gradient(135deg, rgba(124, 58, 237, 0.5), rgba(99, 102, 241, 0.35));
+    box-shadow:
+      inset 0 0 0 1px rgba(196, 181, 253, 0.35),
+      0 4px 18px -6px rgba(124, 58, 237, 0.8);
+  }
+}
+
+/* ---- Dreamy backdrop motion (clouds drift, coffee elements float, steam rises) ---- */
+@keyframes rn-drift {
+  from {
+    transform: translateX(-22px);
+  }
+  to {
+    transform: translateX(22px);
+  }
+}
+@keyframes rn-drift2 {
+  from {
+    transform: translateX(18px);
+  }
+  to {
+    transform: translateX(-26px);
+  }
+}
+@keyframes rn-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+@keyframes rn-bob2 {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(11px);
+  }
+}
+@keyframes rn-steam {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  35% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+}
+@keyframes rn-twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .rn-drift {
+    animation: rn-drift 26s ease-in-out infinite alternate;
+  }
+  .rn-drift2 {
+    animation: rn-drift2 34s ease-in-out infinite alternate;
+  }
+  .rn-bob {
+    animation: rn-bob 8s ease-in-out infinite;
+  }
+  .rn-bob2 {
+    animation: rn-bob2 11s ease-in-out infinite;
+  }
+  .rn-steam {
+    animation: rn-steam 5s ease-in-out infinite;
+  }
+  .rn-twinkle {
+    animation: rn-twinkle 4.5s ease-in-out infinite;
   }
 }

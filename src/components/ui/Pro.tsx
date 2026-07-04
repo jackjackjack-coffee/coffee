@@ -2,17 +2,22 @@ import type { ReactNode } from 'react';
 import { useT } from '../../i18n';
 import { useTier } from '../../lib/hooks';
 import { hasFeature, type Feature } from '../../license/gate';
-import { LS_CHECKOUT_CAFE, LS_CHECKOUT_PERSONAL } from '../../license/lemonsqueezy';
+import { CHECKOUT_CONFIGURED, LS_CHECKOUT_CAFE, LS_CHECKOUT_PERSONAL } from '../../license/lemonsqueezy';
 import { useAppStore } from '../../store/useAppStore';
 
 export function ProBadge() {
   return (
-    <span className="chip bg-amber-100 text-amber-700">PRO</span>
+    <span className="chip bg-gold/15 text-gold">PRO</span>
   );
 }
 
 function BuyButtons({ which }: { which: 'personal' | 'cafe' | 'both' }) {
   const t = useT();
+  // Until real checkout links are configured, don't render buttons that lead
+  // to a placeholder domain — point users at the license field instead.
+  if (!CHECKOUT_CONFIGURED) {
+    return <p className="text-xs text-coffee-500">{t('pro.comingSoon')}</p>;
+  }
   return (
     <div className="flex flex-wrap gap-2">
       {(which === 'personal' || which === 'both') && (
@@ -58,7 +63,7 @@ export function LockedFeature({
           {children}
         </div>
       )}
-      <div className="absolute inset-0 flex items-center justify-center bg-cream/70 p-6">
+      <div className="absolute inset-0 flex items-center justify-center bg-glassbg/80 p-6 backdrop-blur-md">
         <div className="max-w-sm text-center">
           <div className="mb-2 inline-block">
             <ProBadge />
@@ -85,7 +90,7 @@ export function LockedFeature({
 export function PaywallNote({ mode }: { mode: 'home' | 'cafe' }) {
   const t = useT();
   return (
-    <div className="rounded-xl bg-amber-50 p-3 text-sm text-amber-800">
+    <div className="rounded-xl bg-gold/10 p-3 text-sm text-gold">
       <p>{mode === 'home' ? t('pro.homeBlurb') : t('pro.cafeBlurb')}</p>
       <div className="mt-3">
         <BuyButtons which={mode === 'home' ? 'personal' : 'cafe'} />
